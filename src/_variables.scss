@@ -1,0 +1,38 @@
+// Define variables to override default ones
+$primary-color: #000;
+
+
+// $control-width-xs: 180px !default;
+// $control-width-sm: 320px !default;
+// $control-width-md: 640px !default;
+// $control-width-lg: 960px !default;
+// $control-width-xl: 1280px !default;
+
+
+
+// // Responsive breakpoints
+// $size-xs: 480px !default;
+// $size-sm: 600px !default;
+// $size-md: 840px !default;
+// $size-lg: 960px !default;
+// $size-xl: 1280px !default;
+// $size-2x: 1440px !default;
+
+
+$control-width-xs: 800px !default;
+$control-width-sm: 1280px !default;
+$control-width-md: 1360px !default;
+$control-width-lg: 1600px !default;
+$control-width-xl: 1920px !default;
+
+
+
+// Responsive breakpoints
+$size-xs: 800px !default;
+$size-sm: 1280px !default;
+$size-md: 1360px !default;
+$size-lg: 1600px !default;
+$size-xl: 1920px !default;
+$size-2x: 2080px !default;
+
+@import "../node_modules/spectre.css/src/variables";
