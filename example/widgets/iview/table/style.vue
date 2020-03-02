@@ -1,27 +1,27 @@
 <template>
   <div>
     <hr />
-    <div class="panel-row">
-    <vpd-icon name="target" />
-    <div class="panel-label" style="width: 100%;">表格数据</div>
+    <!-- <div class="panel-row">
+      <vpd-icon name="target" />
+      <div class="panel-label" style="width: 100%;">表格数据</div>
     </div>
-    
+
     <div class="panel-row">
       <vpd-icon name="target" />
       <div class="panel-value">
         <codemirror v-model="activeElement.data" :options="cmOptions"></codemirror>
-        <!-- <Input v-model="activeElement.data" /> -->
       </div>
-    </div>
+    </div>-->
+
     <div class="panel-row">
-    <vpd-icon name="target" />
-    <div class="panel-label">表格列配置</div>
+      <vpd-icon name="target" />
+      <div class="panel-label">表格列配置</div>
     </div>
     <div class="panel-row">
       <vpd-icon name="target" />
-      
+
       <div class="panel-value">
-      <codemirror v-model="activeElement.columns" :options="cmOptions"></codemirror>
+        <codemirror v-model="activeElement.columns" :options="cmOptions"></codemirror>
         <!-- <Input v-model="activeElement.columns" /> -->
       </div>
     </div>
@@ -120,7 +120,7 @@
       <vpd-icon name="target" />
       <div class="panel-label">表尾是否显示合计行</div>
       <div class="panel-value">
-      <Input v-model="activeElement.showSummary" />
+        <Input v-model="activeElement.showSummary" />
       </div>
     </div>
     <div class="panel-row">
@@ -137,7 +137,7 @@
       <vpd-icon name="target" />
       <div class="panel-label">合计计算方法</div>
       <div class="panel-value">
-       <Input v-model="activeElement.summaryMethod" />
+        <Input v-model="activeElement.summaryMethod" />
       </div>
     </div>
     <div class="panel-row">
@@ -160,17 +160,16 @@ export default {
         // codemirror options
         tabSize: 4,
         mode: {
-          name: 'javascript',
+          name: "javascript",
           json: true
         },
-        theme: 'base16-dark',
+        theme: "base16-dark",
         lineNumbers: true,
-        line: true,
+        line: true
         // more codemirror options, 更多 codemirror 的高级配置...
       }
-    }
+    };
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>

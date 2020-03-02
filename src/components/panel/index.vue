@@ -61,7 +61,7 @@ export default {
   height: calc(100% - 50px);
   padding: 15px 20px;
   position: relative;
-  overflow-y: auto;
+  // overflow-y: auto;
   .btn-action {
     background-color: none;
     border: none;

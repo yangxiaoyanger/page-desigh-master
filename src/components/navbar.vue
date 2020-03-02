@@ -4,7 +4,34 @@
       <section class="logo navbar-section">
         <vpd-icon name="anchor" />&nbsp;&nbsp;页面编辑器
       </section>
-      <section  v-show="previewHideStatus">
+      <section class="logo navbar-section">
+        <Dropdown>
+          <a href="javascript:void(0)">
+            报表组件
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <ul class="widget-list columns">
+              <li
+                v-for="item in widgets"
+                :key="item.name"
+                class="menu-item column col-3"
+                draggable="true"
+                @dragstart="handleDragStart(item, $event)"
+              >
+                <Icon
+                  :type="item.icon.type"
+                  :size="item.icon.size"
+                  :color="item.icon.color"
+                  :custom="item.icon.custom"
+                />
+                <span class="menu-caption">{{ item.title }}</span>
+              </li>
+            </ul>
+          </DropdownMenu>
+        </Dropdown>
+      </section>
+      <section v-show="previewHideStatus">
         <a
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="复制元件 Ctrl + C"
@@ -22,7 +49,7 @@
           <vpd-icon name="preview" />预览
         </a>
       </section>
-      <section  v-show="previewShowStatus">
+      <section v-show="previewShowStatus">
         <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="取消预览" @click="hidePreview">
           <vpd-icon name="preview" />取消预览
         </a>
@@ -33,9 +60,16 @@
 
 <script>
 import vpd from "../mixins/vpd";
+import widget from "../plugins/widget";
 export default {
   mixins: [vpd],
+  data() {
+    return {};
+  },
   computed: {
+    widgets() {
+      return widget.getWidgets();
+    },
     show() {
       return this.$vpd.state.type !== "page";
     },
@@ -85,6 +119,16 @@ export default {
   },
 
   methods: {
+    // 为确保添加的元件出现在可视区内，用画布向上滚动距离作为元件初始 top 值
+    updateSrollTop() {
+      var top =
+        (document.getElementById("viewport").scrollTop / this.zoom) * 100;
+      this.$vpd.commit("updateSrollTop", top);
+    },
+    handleDragStart(item, e) {
+      console.log(item, e, "handleDragStart");
+      e.dataTransfer.setData("node", JSON.stringify(item));
+    },
     // 保存
     save() {
       this.$vpd.dispatch("save");
@@ -115,7 +159,19 @@ export default {
 .header {
   background-color: #39f;
   padding: 12px 0;
-  color:#eee;
+  color: #eee;
+  a,
+  a:active,
+  a:hover,
+  a:visited {
+    color: #eee !important;
+  }
+}
+.ivu-dropdown-menu {
+  li {
+    list-style: none;
+    color: #000;
+  }
 }
 .navbar {
   .svg-icon {

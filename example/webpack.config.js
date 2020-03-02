@@ -50,7 +50,10 @@ const config = {
     inline: true,
     stats: 'errors-only',
     host: '0.0.0.0',
-    port: 8080
+    port: 8080,
+    proxy: { // proxy URLs to backend development server
+      '/api': 'http://10.0.30.208:19090'
+    },
   },
   module: {
     rules: [

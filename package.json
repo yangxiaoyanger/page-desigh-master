@@ -31,6 +31,7 @@
   "author": "fireyy <fireyy@gmail.com>",
   "dependencies": {
     "autoprefixer-loader": "^3.2.0",
+    "axios": "^0.19.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-loader": "^0.5.5",
     "less": "^3.11.1",

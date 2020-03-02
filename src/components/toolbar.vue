@@ -1,6 +1,6 @@
 <template>
   <div class="menu-bar">
-    <details open>
+    <!-- <details open>
       <summary>
         <vpd-icon name="list" />可用组件
       </summary>
@@ -18,16 +18,15 @@
             :color="item.icon.color"
             :custom="item.icon.custom"
           />
-          <!-- <vpd-icon :svg="item.icon" :title="item.title" /> -->
           <span class="menu-caption">{{ item.title }}</span>
         </li>
       </ul>
-    </details>
+    </details>-->
     <details open>
       <summary>
         <vpd-icon name="layers" />已加组件
       </summary>
-      <tree :nodes="layers" :setting="setting" ref="widgetTree" style="margin-top:15px;"/>
+      <tree :nodes="layers" :setting="setting" ref="widgetTree" style="margin-top:15px;" />
 
       <!-- <ul class="layer-list">
         <li
@@ -141,8 +140,8 @@ export default {
       console.log(treeNodes, targetNode);
       this.$vpd.commit("updateWidgets", treeNodes);
       let treeObj = this.$refs.widgetTree.ztreeObj;
-      treeObj.expandAll()
-      console.log(treeObj, 888)
+      treeObj.expandAll();
+      console.log(treeObj, 888);
       // let treeNodes = this.$refs.widgetTree.ztreeObj.getNodes()
       // for (let i = 0; i < treeNodes.length; i++) {
       //   // 设置节点展开
