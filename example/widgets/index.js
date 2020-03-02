@@ -10,6 +10,10 @@ import braidColumn from './iview/column/index.vue'
 import braidTable from './iview/table/index.vue'
 import braidInput from './iview/input/index.vue'
 
+
+import braidLine from './echarts/line/index.vue'
+import braidBar from './echarts/bar/index.vue'
+
 export default {
   [braidBg.name]: braidBg,
   [braidPic.name]: braidPic,
@@ -20,5 +24,8 @@ export default {
   [braidGrid.name]: braidGrid,
   [braidColumn.name]: braidColumn,
   [braidTable.name]: braidTable,
-  [braidInput.name]: braidInput
+  [braidInput.name]: braidInput,
+
+  [braidLine.name]: braidLine,
+  [braidBar.name]: braidBar
 }

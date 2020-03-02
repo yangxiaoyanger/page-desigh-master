@@ -5,6 +5,31 @@
         <vpd-icon name="anchor" />&nbsp;&nbsp;页面编辑器
       </section>
       <section class="logo navbar-section">
+        <Dropdown trigger="click" style="margin-right:20px;">
+          <a href="javascript:void(0)">
+            图表
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <ul class="widget-list columns">
+              <li
+                v-for="item in echartsWidgets"
+                :key="item.name"
+                class="menu-item column col-3"
+                draggable="true"
+                @dragstart="handleDragStart(item, $event)"
+              >
+                <Icon
+                  :type="item.icon.type"
+                  :size="item.icon.size"
+                  :color="item.icon.color"
+                  :custom="item.icon.custom"
+                />
+                <span class="menu-caption">{{ item.title }}</span>
+              </li>
+            </ul>
+          </DropdownMenu>
+        </Dropdown>
         <Dropdown>
           <a href="javascript:void(0)">
             报表组件
@@ -69,6 +94,9 @@ export default {
   computed: {
     widgets() {
       return widget.getWidgets();
+    },
+    echartsWidgets() {
+      return widget.getWidgets("echarts");
     },
     show() {
       return this.$vpd.state.type !== "page";

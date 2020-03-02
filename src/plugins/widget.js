@@ -28,8 +28,14 @@ const install = (Vue, config = {}) => {
 
 export default {
   install,
-  getWidgets() {
-    return widgets
+  getWidgets(type = 'braid') {
+    let result = []
+    Object.keys(widgets).forEach(key => {
+      if (key.indexOf(type) >= 0) {
+        result.push(widgets[key])
+      }
+    })
+    return result
   },
   getWidgetStyle() {
     return widgetStyle
