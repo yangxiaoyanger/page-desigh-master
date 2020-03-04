@@ -1,20 +1,18 @@
 <template>
-  <Card>
     <div
       ref="line"
       :style="{
         position: 'absolute',
-        width: val.width / 12.8 + '%',
-        height: val.height / h * 100 + 'px',
-        left: val.left / 12.8 + '%',
-        top: val.top / h * 100 + '%',
+        width: val.width + 'px',
+        height: val.height + 'px',
+        left: val.left + 'px',
+        top: val.top + 'px',
         zIndex: val.z,
         backgroundColor: val.bgColor,
         backgroundImage: 'url(' + val.backPic + ')',
         color: val.color
       }"
     />
-  </Card>
 </template>
 
 <script>
@@ -138,7 +136,7 @@ export default {
     resizable: true,
     name: "折线图",
     width: 250,
-    height: 400,
+    height: 200,
     left: 50,
     top: 0,
     z: 0,
@@ -149,14 +147,17 @@ export default {
     text: "折线图",
     belong: "page",
     animationName: "",
-    option: option
+    option: option,
+    dom: null
   },
   props: ["h", "val", "playState"],
 
   methods: {
-    // resize() {
-    //   this.dom.resize();
-    // }
+    resize() {
+      this.dom.resize();
+    }
+  },
+  watch: {
   },
   mounted() {
     this.$nextTick(() => {

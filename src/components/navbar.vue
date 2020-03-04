@@ -5,7 +5,7 @@
         <vpd-icon name="anchor" />&nbsp;&nbsp;页面编辑器
       </section>
       <section class="logo navbar-section">
-        <Dropdown trigger="click" style="margin-right:20px;">
+        <Dropdown style="margin-right:20px;">
           <a href="javascript:void(0)">
             图表
             <Icon type="ios-arrow-down"></Icon>
@@ -30,7 +30,7 @@
             </ul>
           </DropdownMenu>
         </Dropdown>
-        <Dropdown trigger="click">
+        <Dropdown >
           <a href="javascript:void(0)">
             报表组件
             <Icon type="ios-arrow-down"></Icon>
@@ -200,7 +200,13 @@ export default {
     list-style: none;
     color: #000;
   }
+  .widget-list.columns {
+    min-width: 400px;
+  }
 }
+.ivu-dropdown-rel {
+    font-size: 16px;
+  }
 .navbar {
   .svg-icon {
     svg {
