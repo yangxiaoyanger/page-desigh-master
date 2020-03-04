@@ -30,7 +30,7 @@
             </ul>
           </DropdownMenu>
         </Dropdown>
-        <Dropdown>
+        <Dropdown trigger="click">
           <a href="javascript:void(0)">
             报表组件
             <Icon type="ios-arrow-down"></Icon>
