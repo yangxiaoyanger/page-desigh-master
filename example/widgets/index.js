@@ -11,8 +11,9 @@ import braidTable from './iview/table/index.vue'
 import braidInput from './iview/input/index.vue'
 
 
-import braidLine from './echarts/line/index.vue'
-import braidBar from './echarts/bar/index.vue'
+import echartsLine from './echarts/line/index.vue'
+import echartsBar from './echarts/bar/index.vue'
+import echartsPie from './echarts/pie/index.vue'
 
 
 import dataVBorder from './dataV/border/border.vue'
@@ -31,8 +32,9 @@ export default {
   [braidTable.name]: braidTable,
   [braidInput.name]: braidInput,
 
-  [braidLine.name]: braidLine,
-  [braidBar.name]: braidBar,
+  [echartsLine.name]: echartsLine,
+  [echartsBar.name]: echartsBar,
+  [echartsPie.name]: echartsPie,
 
 
 

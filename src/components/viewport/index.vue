@@ -209,9 +209,6 @@ export default {
       } else if (target.closest("[data-type]")) {
         activeTarget = target.closest("[data-type]");
       }
-
-      console.log(activeTarget, 9999);
-
       if (activeTarget) {
         var type = activeTarget.getAttribute("data-type");
         if (type) {

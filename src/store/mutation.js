@@ -47,6 +47,11 @@ export default {
     var dx = payload.x - state.startX
     var dy = payload.y - state.startY
     var value
+    // 如果是echarts插件就要重绘
+    if (state.activeElement.isEcharts) {
+      let dom = echarts.getInstanceByDom(document.querySelector('#viewport .g-active'))
+      dom.resize()
+    }
 
     if (payload.type === 'right') {
       value = state.originX + Math.floor(dx * 100 / state.zoom)
@@ -73,13 +78,6 @@ export default {
       var height = state.originY - Math.floor(dy * 100 / state.zoom)
       state.activeElement.top = top > 0 ? top : 0
       state.activeElement.height = height > 10 ? height : 10
-    }
-
-    if (state.activeElement.isEcharts) {
-      let dom = echarts.getInstanceByDom(document.querySelector('.g-active'))
-      console.log(dom.getOption(), 88777)
-      dom.resize({
-      })
     }
   },
 
@@ -124,12 +122,19 @@ export default {
   },
   updateWidgets(state, widgets) {
     let result = []
-    console.log(widgets, 2766)
+    if (!Array.isArray(widgets)) {
+      widgets = [widgets]
+    }
     widgets.forEach(widget => {
       state.widgets.forEach(stateItem => {
         if (stateItem.uuid == widget.uuid) {
           widget.belong = widget.belong == null ? 'page' : widget.belong
           result.push(widget)
+          // 如果是echarts插件就要重绘
+          if (stateItem.isEcharts) {
+            let dom = echarts.getInstanceByDom(document.querySelector('#viewport .g-active'))
+            dom.setOption(stateItem.option)
+          }
         } else {
           result.push(stateItem)
         }

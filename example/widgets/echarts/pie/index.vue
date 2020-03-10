@@ -19,42 +19,48 @@
 import stylec from "./style.vue";
 import echarts from "echarts";
 // import { on, off } from "@/libs/tools";
-const WIDGET_NAME = "echarts-bar";
+const WIDGET_NAME = "echarts-pie";
 const option = {
-  color: ["#3398DB"],
   tooltip: {
-    trigger: "axis",
-    axisPointer: {
-      // 坐标轴指示器，坐标轴触发有效
-      type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
-    }
+    trigger: "item",
+    formatter: "{a} <br/>{b}: {c} ({d}%)"
   },
-  grid: {
-    left: "3%",
-    right: "4%",
-    bottom: "3%",
-    containLabel: true
+  legend: {
+    orient: "vertical",
+    left: 10,
+    data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"]
   },
-  xAxis: [
-    {
-      type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      axisTick: {
-        alignWithLabel: true
-      }
-    }
-  ],
-  yAxis: [
-    {
-      type: "value"
-    }
-  ],
   series: [
     {
-      name: "直接访问",
-      type: "bar",
-      barWidth: "60%",
-      data: [10, 52, 200, 334, 390, 330, 220]
+      name: "访问来源",
+      type: "pie",
+      radius: ["50%", "70%"],
+      avoidLabelOverlap: false,
+      label: {
+        normal: {
+          show: false,
+          position: "center"
+        },
+        emphasis: {
+          show: true,
+          textStyle: {
+            fontSize: "30",
+            fontWeight: "bold"
+          }
+        }
+      },
+      labelLine: {
+        normal: {
+          show: false
+        }
+      },
+      data: [
+        { value: 335, name: "直接访问" },
+        { value: 310, name: "邮件营销" },
+        { value: 234, name: "联盟广告" },
+        { value: 135, name: "视频广告" },
+        { value: 1548, name: "搜索引擎" }
+      ]
     }
   ]
 };
@@ -66,9 +72,9 @@ export default {
   },
   name: WIDGET_NAME,
   icon: {
-    type: "ios-podium"
+    type: "ios-pie"
   },
-  title: "柱状图",
+  title: "饼状图",
   panel: stylec,
   setting: {
     type: WIDGET_NAME,
@@ -78,7 +84,7 @@ export default {
     isChild: true,
     draggable: true,
     resizable: true,
-    name: "柱状图",
+    name: "饼状图",
     width: 250,
     height: 200,
     left: 50,
@@ -88,7 +94,7 @@ export default {
     backPic: "",
     backPicUrl: "",
     color: "",
-    text: "柱状图",
+    text: "饼状图",
     belong: "page",
     animationName: "",
     option: option,

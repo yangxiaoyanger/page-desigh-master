@@ -10,42 +10,35 @@
     </div>
     <div class="panel-row">
       <vpd-icon name="target" />
-      <div class="panel-label">表格列配置</div>
+      <div class="panel-label">tooltip配置</div>
     </div>
     <div class="panel-row">
       <vpd-icon name="target" />
 
       <div class="panel-value">
-        <codemirror v-model="activeElement.columns" :options="cmOptions"></codemirror>
-        <!-- <Input v-model="activeElement.columns" /> -->
+        <codemirror :value="tooltip" :options="cmOptions" @input="tooltipChange"></codemirror>
       </div>
     </div>
     <div class="panel-row">
       <vpd-icon name="target" />
-      <div class="panel-label">间隔斑马纹</div>
+      <div class="panel-label">series配置</div>
+    </div>
+    <div class="panel-row">
+      <vpd-icon name="target" />
+
       <div class="panel-value">
-        <Switch v-model="activeElement.stripe" />
+        <codemirror :value="series" :options="cmOptions" @input="onSeriesChange"></codemirror>
       </div>
     </div>
     <div class="panel-row">
       <vpd-icon name="target" />
-      <div class="panel-label">是否显示纵向边框</div>
-      <div class="panel-value">
-        <Switch v-model="activeElement.border" />
-      </div>
+      <div class="panel-label">xAxis配置</div>
     </div>
     <div class="panel-row">
       <vpd-icon name="target" />
-      <div class="panel-label">是否显示表头</div>
+
       <div class="panel-value">
-        <Switch v-model="activeElement.showHeader" />
-      </div>
-    </div>
-    <div class="panel-row">
-      <vpd-icon name="target" />
-      <div class="panel-label">表格宽度（px）</div>
-      <div class="panel-value">
-        <Input v-model="activeElement.width" />
+        <codemirror :value="xAxis" :options="cmOptions" @input="xAxisChange"></codemirror>
       </div>
     </div>
   </div>
@@ -68,14 +61,23 @@ export default {
         lineNumbers: true,
         line: true
         // more codemirror options, 更多 codemirror 的高级配置...
-      }
+      },
+      series: JSON.stringify(this.activeElement.option.series),
+      xAxis: JSON.stringify(this.activeElement.option.xAxis),
+      tooltip: JSON.stringify(this.activeElement.option.tooltip)
     };
   },
   methods: {
-    addPic() {
-      this.$parent.$vpd.$emit("upload", payload => {
-        this.$parent.$vpd.commit("addContainerBackPic", payload);
-      });
+    onSeriesChange(newCode) {
+      this.activeElement.option.series = JSON.parse(newCode);
+      this.$parent.$vpd.commit("updateWidgets", this.activeElement);
+    },
+    tooltipChange(newCode) {
+      this.activeElement.option.tooltip = JSON.parse(newCode);
+      this.$parent.$vpd.commit("updateWidgets", this.activeElement);
+    },
+    xAxisChange(newCode) {
+      this.activeElement.option.xAxis = JSON.parse(newCode);
     }
   }
 };

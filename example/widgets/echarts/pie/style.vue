@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: "EchartsLineStyle",
+  name: "EchartsPieStyle",
   props: ["activeElement"],
   data() {
     return {
