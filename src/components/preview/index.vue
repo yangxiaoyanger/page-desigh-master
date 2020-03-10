@@ -1,5 +1,5 @@
 <template>
-  <div id="viewport" class="holder">
+  <div id="viewportPreview" class="holder">
     <div
       :style="{
         backgroundColor: backgroundColor,
@@ -105,9 +105,7 @@ export default {
     }
   },
 
-  mounted() {
-    
-  },
+  mounted() {},
 
   methods: {
     // 获取子组件

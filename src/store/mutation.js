@@ -1,4 +1,5 @@
 const generate = require('nanoid/generate')
+import echarts from "echarts";
 
 export default {
   // 选中元件与取消选中
@@ -38,6 +39,7 @@ export default {
 
     target.left = left > 0 ? left : 0
     target.top = top > 0 ? top : 0
+
   },
 
   // 调整元件尺寸
@@ -71,6 +73,13 @@ export default {
       var height = state.originY - Math.floor(dy * 100 / state.zoom)
       state.activeElement.top = top > 0 ? top : 0
       state.activeElement.height = height > 10 ? height : 10
+    }
+
+    if (state.activeElement.isEcharts) {
+      let dom = echarts.getInstanceByDom(document.querySelector('.g-active'))
+      console.log(dom.getOption(), 88777)
+      dom.resize({
+      })
     }
   },
 

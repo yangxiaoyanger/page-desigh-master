@@ -69,6 +69,7 @@ import widgetRefLine from "./widget-ref-lines.vue";
 import control from "./size-control.vue";
 import { move } from "../../mixins";
 import vpd from "../../mixins/vpd";
+import { cumulativeOffset, checkInView } from "../../utils/offset";
 
 export default {
   name: "Viewport",
@@ -161,7 +162,6 @@ export default {
   methods: {
     handleDragStart(item, e) {
       this.initmovement(e);
-      console.log(this.$vpd.state.activeElement, 7777);
       // e.dataTransfer.setData("node", JSON.stringify(item));
     },
     handleMouseOverOnNode(node, e) {
@@ -205,13 +205,13 @@ export default {
       var target = e.target;
       let activeTarget;
       if (target.getAttribute("data-type")) {
-        activeTarget = target
+        activeTarget = target;
       } else if (target.closest("[data-type]")) {
-        activeTarget = target.closest("[data-type]")
+        activeTarget = target.closest("[data-type]");
       }
 
-      console.log(activeTarget, 9999)
-      
+      console.log(activeTarget, 9999);
+
       if (activeTarget) {
         var type = activeTarget.getAttribute("data-type");
         if (type) {
@@ -234,13 +234,11 @@ export default {
           });
         }
       } else {
-          // 取消选中元素
-          this.$vpd.commit("select", {
-            uuid: -1
-          });
-        }
-
-      
+        // 取消选中元素
+        this.$vpd.commit("select", {
+          uuid: -1
+        });
+      }
     },
 
     // 替换图片

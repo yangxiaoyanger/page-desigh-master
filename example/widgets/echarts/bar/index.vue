@@ -1,7 +1,7 @@
 <template>
-    <div
-      ref="line"
-      :style="{
+  <div
+    ref="line"
+    :style="{
         position: 'absolute',
         width: val.width + 'px',
         height: val.height + 'px',
@@ -12,7 +12,7 @@
         backgroundImage: 'url(' + val.backPic + ')',
         color: val.color
       }"
-    />
+  />
 </template>
 
 <script>
@@ -21,48 +21,48 @@ import echarts from "echarts";
 // import { on, off } from "@/libs/tools";
 const WIDGET_NAME = "echarts-bar";
 const option = {
-    tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
-    },
-    legend: {
-        orient: 'vertical',
-        left: 10,
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-    },
-    series: [
-        {
-            name: '访问来源',
-            type: 'pie',
-            radius: ['50%', '70%'],
-            avoidLabelOverlap: false,
-            label: {
-                normal: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '30',
-                        fontWeight: 'bold'
-                    }
-                }
-            },
-            labelLine: {
-                normal: {
-                    show: false
-                }
-            },
-            data: [
-                {value: 335, name: '直接访问'},
-                {value: 310, name: '邮件营销'},
-                {value: 234, name: '联盟广告'},
-                {value: 135, name: '视频广告'},
-                {value: 1548, name: '搜索引擎'}
-            ]
+  tooltip: {
+    trigger: "item",
+    formatter: "{a} <br/>{b}: {c} ({d}%)"
+  },
+  legend: {
+    orient: "vertical",
+    left: 10,
+    data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"]
+  },
+  series: [
+    {
+      name: "访问来源",
+      type: "pie",
+      radius: ["50%", "70%"],
+      avoidLabelOverlap: false,
+      label: {
+        normal: {
+          show: false,
+          position: "center"
+        },
+        emphasis: {
+          show: true,
+          textStyle: {
+            fontSize: "30",
+            fontWeight: "bold"
+          }
         }
-    ]
+      },
+      labelLine: {
+        normal: {
+          show: false
+        }
+      },
+      data: [
+        { value: 335, name: "直接访问" },
+        { value: 310, name: "邮件营销" },
+        { value: 234, name: "联盟广告" },
+        { value: 135, name: "视频广告" },
+        { value: 1548, name: "搜索引擎" }
+      ]
+    }
+  ]
 };
 export default {
   data() {
@@ -72,7 +72,7 @@ export default {
   },
   name: WIDGET_NAME,
   icon: {
-    type: "logo-youtube"
+    type: "ios-pizza"
   },
   title: "饼状图",
   panel: stylec,

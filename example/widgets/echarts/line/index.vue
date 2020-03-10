@@ -1,18 +1,18 @@
 <template>
-    <div
-      ref="line"
-      :style="{
-        position: 'absolute',
-        width: val.width + 'px',
-        height: val.height + 'px',
-        left: val.left + 'px',
-        top: val.top + 'px',
-        zIndex: val.z,
-        backgroundColor: val.bgColor,
-        backgroundImage: 'url(' + val.backPic + ')',
-        color: val.color
-      }"
-    />
+  <div
+    ref="line"
+    :style="{
+      position: 'absolute',
+      width: val.width / 12.8 + '%',
+      height: val.height + 'px',
+      left: val.left + 'px',
+      top: val.top + 'px',
+      zIndex: val.z,
+      backgroundColor: val.bgColor,
+      backgroundImage: 'url(' + val.backPic + ')',
+      color: val.color
+    }"
+  />
 </template>
 
 <script>
@@ -115,14 +115,15 @@ const option = {
 };
 
 export default {
+  name: WIDGET_NAME,
+  props: ["h", "val", "playState"],
   data() {
     return {
       dom: null
     };
   },
-  name: WIDGET_NAME,
   icon: {
-    type: "logo-youtube"
+    type: "ios-pulse"
   },
   title: "折线图",
   panel: stylec,
@@ -148,17 +149,9 @@ export default {
     belong: "page",
     animationName: "",
     option: option,
-    dom: null
+    isEcharts: true
   },
-  props: ["h", "val", "playState"],
-
-  methods: {
-    resize() {
-      this.dom.resize();
-    }
-  },
-  watch: {
-  },
+  watch: {},
   mounted() {
     this.$nextTick(() => {
       this.dom = echarts.init(this.$refs.line);
@@ -168,6 +161,12 @@ export default {
   },
   beforeDestroy() {
     // off(window, "resize", this.resize);
+  },
+
+  methods: {
+    resize() {
+      this.dom.resize();
+    }
   }
 };
 </script>

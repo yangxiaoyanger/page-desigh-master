@@ -5,7 +5,7 @@
       <vpd-icon name="layers" />
       <div class="panel-label">层级</div>
       <div class="panel-value">
-          <Input v-model="activeElement.z" />
+        <Input v-model="activeElement.z" />
       </div>
     </div>
 
@@ -13,7 +13,7 @@
       <vpd-icon name="more-horizontal" />
       <div class="panel-label">宽度</div>
       <div class="panel-value">
-          <Input v-model="activeElement.width" />
+        <Input v-model="activeElement.width" />
       </div>
     </div>
 
@@ -21,15 +21,15 @@
       <vpd-icon name="more-vertical" />
       <div class="panel-label">高度</div>
       <div class="panel-value">
-          <Input v-model="activeElement.height" />
+        <Input v-model="activeElement.height" />
       </div>
     </div>
 
     <div class="panel-row">
       <vpd-icon name="arrow-right" />
       <div class="panel-label">横坐标</div>
-       <div class="panel-value">
-          <Input v-model="activeElement.left" />
+      <div class="panel-value">
+        <Input v-model="activeElement.left" />
       </div>
     </div>
 
@@ -37,7 +37,7 @@
       <vpd-icon name="arrow-down" />
       <div class="panel-label">纵坐标</div>
       <div class="panel-value">
-          <Input v-model="activeElement.top" />
+        <Input v-model="activeElement.top" />
       </div>
     </div>
 
@@ -51,7 +51,7 @@
     />
 
     <!-- 自定义样式 -->
-    <div>
+    <!-- <div>
       <hr />
       <div class="panel-row">
         <vpd-icon name="layout" />
@@ -62,7 +62,7 @@
         <div class="panel-value"><codemirror v-model="activeElement.mystyle" :options="cmOptions"></codemirror></div>
       </div>
       
-  </div>
+    </div>-->
 
     <!-- 添加到容器 -->
     <div v-if="activeElement.isChild">
@@ -78,10 +78,9 @@
         <vpd-icon name="layout" />
         <div class="panel-label">所属容器</div>
         <div class="panel-value">
-          <select v-model="activeElement.belong">
-            <option>page</option>
-            <option v-for="(val, index) in containerName" :key="index">{{ val }}</option>
-          </select>
+          <Select v-model="activeElement.belong">
+            <Option v-for="(val, index) in containerName" :key="index" :value="val">{{ val }}</Option>
+          </Select>
         </div>
       </div>
     </div>
@@ -102,12 +101,12 @@ export default {
         // codemirror options
         tabSize: 4,
         mode: {
-          name: 'javascript',
+          name: "javascript",
           json: true
         },
-        theme: 'base16-dark',
+        theme: "base16-dark",
         lineNumbers: true,
-        line: true,
+        line: true
         // more codemirror options, 更多 codemirror 的高级配置...
       }
     };
@@ -115,7 +114,7 @@ export default {
 
   computed: {
     widgetStyle() {
-      console.log(widget.getWidgetStyle(), 'widget.getWidgetStyle()')
+      console.log(widget.getWidgetStyle(), "widget.getWidgetStyle()");
       return widget.getWidgetStyle();
     },
     // 页面高度
@@ -125,7 +124,7 @@ export default {
 
     // 容器名称
     containerName() {
-      var arr = [];
+      var arr = ["page"];
       this.$vpd.state.widgets.map(
         val => val.isContainer && val.name && arr.push(val.name)
       );

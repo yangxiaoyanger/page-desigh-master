@@ -30,7 +30,7 @@
             </ul>
           </DropdownMenu>
         </Dropdown>
-        <Dropdown >
+        <Dropdown style="margin-right:20px;">
           <a href="javascript:void(0)">
             报表组件
             <Icon type="ios-arrow-down"></Icon>
@@ -39,6 +39,31 @@
             <ul class="widget-list columns">
               <li
                 v-for="item in widgets"
+                :key="item.name"
+                class="menu-item column col-3"
+                draggable="true"
+                @dragstart="handleDragStart(item, $event)"
+              >
+                <Icon
+                  :type="item.icon.type"
+                  :size="item.icon.size"
+                  :color="item.icon.color"
+                  :custom="item.icon.custom"
+                />
+                <span class="menu-caption">{{ item.title }}</span>
+              </li>
+            </ul>
+          </DropdownMenu>
+        </Dropdown>
+        <Dropdown>
+          <a href="javascript:void(0)">
+            DataV组件
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <ul class="widget-list columns">
+              <li
+                v-for="item in dataVWidgets"
                 :key="item.name"
                 class="menu-item column col-3"
                 draggable="true"
@@ -97,6 +122,9 @@ export default {
     },
     echartsWidgets() {
       return widget.getWidgets("echarts");
+    },
+    dataVWidgets() {
+      return widget.getWidgets("dataV");
     },
     show() {
       return this.$vpd.state.type !== "page";
@@ -205,8 +233,8 @@ export default {
   }
 }
 .ivu-dropdown-rel {
-    font-size: 16px;
-  }
+  font-size: 16px;
+}
 .navbar {
   .svg-icon {
     svg {

@@ -1,41 +1,10 @@
 <template>
   <div class="menu-bar">
-    <!-- <details open>
-      <summary>
-        <vpd-icon name="list" />可用组件
-      </summary>
-      <ul class="widget-list columns" @mousedown="updateSrollTop">
-        <li
-          v-for="item in widgets"
-          :key="item.name"
-          class="menu-item column col-6"
-          draggable="true"
-          @dragstart="handleDragStart(item, $event)"
-        >
-          <Icon
-            :type="item.icon.type"
-            :size="item.icon.size"
-            :color="item.icon.color"
-            :custom="item.icon.custom"
-          />
-          <span class="menu-caption">{{ item.title }}</span>
-        </li>
-      </ul>
-    </details>-->
     <details open>
       <summary>
         <vpd-icon name="layers" />已加组件
       </summary>
       <tree :nodes="layers" :setting="setting" ref="widgetTree" style="margin-top:15px;" />
-
-      <!-- <ul class="layer-list">
-        <li
-          v-for="layer in layers"
-          :class="{'layer-active': layer === activeElement}"
-          :key="layer.uuid"
-          @click="(e) => {activeLayer(e, layer)}"
-        >{{ getWidgetTitle(layer.type) }}</li>
-      </ul>-->
     </details>
   </div>
 </template>

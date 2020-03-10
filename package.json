@@ -30,6 +30,7 @@
   },
   "author": "fireyy <fireyy@gmail.com>",
   "dependencies": {
+    "@jiaminghi/data-view": "^2.7.3",
     "autoprefixer-loader": "^3.2.0",
     "axios": "^0.19.2",
     "echarts": "^4.6.0",

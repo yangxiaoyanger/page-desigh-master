@@ -14,6 +14,11 @@ import braidInput from './iview/input/index.vue'
 import braidLine from './echarts/line/index.vue'
 import braidBar from './echarts/bar/index.vue'
 
+
+import dataVBorder from './dataV/border/border.vue'
+import dataVDecotation from './dataV/decoration/decoration.vue'
+
+
 export default {
   [braidBg.name]: braidBg,
   [braidPic.name]: braidPic,
@@ -27,5 +32,11 @@ export default {
   [braidInput.name]: braidInput,
 
   [braidLine.name]: braidLine,
-  [braidBar.name]: braidBar
+  [braidBar.name]: braidBar,
+
+
+
+
+  [dataVBorder.name]: dataVBorder,
+  [dataVDecotation.name]: dataVDecotation
 }
