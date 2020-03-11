@@ -10,6 +10,7 @@
       @dblclick="replaceImage"
       @drop.stop.prevent="handleDropOnCanvas('', $event)"
       @dragover.stop.prevent
+      @contextmenu.stop.prevent="handleRightClick($event)"
     >
       <!-- 组件 -->
       <component
@@ -59,6 +60,13 @@
 
       <!-- 尺寸控制器 -->
       <control />
+
+      <slot name="scale">
+        <scale :width="boardWidth" :height="boardHeight"></scale>
+      </slot>
+
+      <!-- 右键菜单 -->
+      <context-menu></context-menu>
     </div>
   </div>
 </template>
@@ -70,13 +78,18 @@ import control from "./size-control.vue";
 import { move } from "../../mixins";
 import vpd from "../../mixins/vpd";
 import { cumulativeOffset, checkInView } from "../../utils/offset";
+import scale from "./scale.vue";
+import contextMenu from "../contextMenu";
+import bus from "../../utils/bus";
 
 export default {
   name: "Viewport",
   components: {
     ref: ref, // 参考线
     control: control, // 尺寸控制
-    widgetRefLine: widgetRefLine // 界限
+    widgetRefLine: widgetRefLine, // 界限
+    scale, // 刻度尺
+    contextMenu // 右键菜单
   },
 
   mixins: [move, vpd],
@@ -84,9 +97,13 @@ export default {
   props: ["zoom"],
 
   data() {
-    return {};
+    return {
+      // 画板宽度
+      boardWidth: 0,
+      // 画板高度
+      boardHeight: 0
+    };
   },
-
   computed: {
     // 已添加的组件
     widgetStore() {
@@ -120,6 +137,11 @@ export default {
   },
 
   mounted() {
+    let _t = this;
+    _t.boardWidth = _t.$el.offsetWidth;
+    _t.boardHeight = _t.$el.offsetHeight;
+    console.log("boardWidth", _t.$el.offsetWidth, _t.$el.offsetHeight);
+
     // 采用事件代理的方式监听元件的选中操作
     document
       .getElementById("viewport")
@@ -250,6 +272,105 @@ export default {
     // 获取子组件
     getChilds(name) {
       return this.$vpd.state.widgets.filter(item => item.belong === name);
+    },
+
+    // 桌面右键点击
+    handleRightClick: function(event) {
+      let _t = this;
+      let xpeEl = document.querySelector("#xpe");
+      let xVal;
+      let yVal;
+      if (xpeEl) {
+        xVal = event.clientX - xpeEl.offsetLeft;
+        yVal = event.clientY - xpeEl.offsetTop;
+      } else {
+        xVal = event.offsetX;
+        yVal = event.offsetY;
+      }
+      // 菜单信息
+      let contextMenuInfo = {
+        isShow: true,
+        x: xVal,
+        y: yVal,
+        target: "XPE_board",
+        list: [
+          {
+            name: "expand",
+            icon: {
+              type: "icon-expand",
+              style: "",
+              category: "iconfont"
+            },
+            text: "展开",
+            enable: _t.isExpand,
+            action: {
+              type: "bus",
+              handler: "XPE/expand/toggle/all",
+              params: false
+            }
+          },
+          {
+            name: "fold",
+            icon: {
+              type: "icon-fold",
+              style: "",
+              category: "iconfont"
+            },
+            text: "折叠",
+            enable: !_t.isExpand,
+            action: {
+              type: "bus",
+              handler: "XPE/expand/toggle/all",
+              params: true
+            }
+          },
+          {
+            name: "showGuides",
+            icon: {
+              type: "",
+              style: "",
+              category: "iconfont"
+            },
+            text: "显示 / 隐藏参考线",
+            enable: true,
+            action: {
+              type: "bus",
+              handler: "XPE/scale/guides/toggle"
+            }
+          },
+          {
+            name: "showToolTip",
+            icon: {
+              type: "",
+              style: "",
+              category: "iconfont"
+            },
+            text: "显示 / 隐藏参考线坐标",
+            enable: true,
+            action: {
+              type: "bus",
+              handler: "XPE/scale/guides/toolTip/toggle"
+            }
+          },
+          {
+            name: "clear",
+            icon: {
+              type: "",
+              style: "",
+              category: "iconfont"
+            },
+            text: "清空编辑器画板",
+            enable: false,
+            action: {
+              type: "bus",
+              // FIXME 需添加confirm 回调操作
+              handler: "XPE/board/clear"
+            }
+          }
+        ]
+      };
+      // 广播事件
+      bus.$emit("XPE/contextMenu/show", contextMenuInfo);
     }
   }
 };

@@ -3,9 +3,9 @@
   <div class="app">
     <navbar />
     <div class="body container grid-xl">
-      <preview v-show="showPreview"/>  
+      <preview v-show="showPreview" />
       <div class="columns col-gapless" v-show="hidePreview">
-        <toolbar :zoom="zoom" class="toolbar column"/>
+        <toolbar :zoom="zoom" class="toolbar column" />
         <div class="viewport column">
           <viewport :zoom="zoom" />
           <div class="zoom-wrap">

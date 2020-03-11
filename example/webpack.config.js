@@ -19,6 +19,15 @@ const page = (name) => {
   })
 }
 
+
+const assetsPath = function (_path) {
+  const assetsSubDirectory = process.env.NODE_ENV === 'production'
+    ? 'static'
+    : 'static'
+
+  return path.posix.join(assetsSubDirectory, _path)
+}
+
 const config = {
   mode: production ? 'production' : 'development',
   devtool: production ? 'source-map' : 'cheap-source-map',
@@ -129,7 +138,15 @@ const config = {
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
     ]
   },
   resolve: {
