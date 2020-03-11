@@ -122,7 +122,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" rel="stylesheet/scss">
+<style  scoped lang="less" rel="stylesheet/less">
 .xpe-context-menu {
   position: absolute;
   min-width: 120px;

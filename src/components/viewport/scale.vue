@@ -480,7 +480,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style  scoped lang="less" rel="stylesheet/less">
 .xpe_scale {
   display: inline-block;
   position: absolute;
@@ -511,7 +511,7 @@ export default {
     background: url("../../assets/scale_y.png") repeat-y;
 
     .scale_item {
-      width: 30px;
+      width: 8px;
       left: 3px;
       word-wrap: break-word;
     }

@@ -80,6 +80,14 @@ const config = {
           options: { babelrc: true }
         }
       },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader'
+        ]
+      },
       // {
       //   test: /\.vue$/,
       //   loader: 'eslint-loader',
@@ -140,13 +148,26 @@ const config = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: assetsPath('img/[name].[hash:7].[ext]')
-        }
-      },
+        test: /\.(png|jpg|gif|jpeg)$/,
+        use: [{
+          loader: 'url-loader',
+          // loader: 'file-loader',
+          options: {
+            esModule: false, // 这里设置为false
+            name: '[name].[ext]',
+            limit: 10240
+          }
+        }]
+      }
+
+      // {
+      //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      //   loader: 'url-loader',
+      //   options: {
+      //     limit: 10000,
+      //     name: assetsPath('img/[name].[hash:7].[ext]')
+      //   }
+      // },
     ]
   },
   resolve: {

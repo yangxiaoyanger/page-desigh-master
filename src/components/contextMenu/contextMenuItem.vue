@@ -4,7 +4,7 @@
 * 右键菜单元素
 */
 
-<style scoped lang="scss" rel="stylesheet/scss">
+<style  scoped lang="less" rel="stylesheet/less">
 </style>
 
 <template>
