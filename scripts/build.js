@@ -5,7 +5,7 @@ const { rollup } = require('rollup');
 const { paths, configs, utils } = require('./config');
 const mkdirp = promisify(mkdirpNode);
 
-async function buildConfig (build) {
+async function buildConfig(build) {
   await mkdirp(paths.dist);
   const bundleName = build.output.file.replace(paths.dist, '');
   console.log(chalk.cyan(`📦  Generating ${bundleName}...`));
@@ -16,7 +16,7 @@ async function buildConfig (build) {
   console.log(chalk.green(`👍  ${bundleName} ${utils.stats({ path: build.output.file })}`));
 }
 
-async function build () {
+async function build() {
   await Promise.all(Object.keys(configs).map(key => {
     return buildConfig(configs[key]).catch(err => {
       console.log(err);

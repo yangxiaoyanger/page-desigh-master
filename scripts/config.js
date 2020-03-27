@@ -10,14 +10,14 @@ const filesize = require('filesize');
 const gzipSize = require('gzip-size');
 const { uglify } = require('rollup-plugin-uglify');
 const { minify } = require('terser');
+const babel = require('rollup-plugin-babel');
 
 const version = process.env.VERSION || require('../package.json').version;
-
 const common = {
   banner:
     `/**
-    * Vue-page-designer v${version}
-    * (c) ${new Date().getFullYear()} fireyy
+    * Vue-page-designer-ytt v${version}
+    * (c) ${new Date().getFullYear()} yangxiaoyanger
     * @license WTFPL
     */`,
   paths: {
@@ -27,35 +27,38 @@ const common = {
   },
   builds: {
     umd: {
-      file: 'vue-page-designer.js',
+      file: 'vue-page-designer-ytt.js',
       format: 'umd',
       name: 'vuePageDesigner',
       env: 'development'
     },
     umdMin: {
-      file: 'vue-page-designer.min.js',
+      file: 'vue-page-designer-ytt.min.js',
       format: 'umd',
       name: 'vuePageDesigner',
       env: 'production'
     },
     esm: {
-      file: 'vue-page-designer.esm.js',
+      file: 'vue-page-designer-ytt.esm.js',
       format: 'es'
     }
   }
 };
 
-function genConfig (options) {
+function genConfig(options) {
   const config = {
     description: '',
     input: {
-      external: ['vue'],
+      external: ['vue', 'axios'],
       input: options.input || common.paths.input,
       plugins: [
         commonjs(),
         replace({ __VERSION__: version }),
         postcss({
           extract: true
+        }),
+        babel({
+          exclude: 'node_modules/**',
         }),
         vue({ css: false }),
         resolve(),
@@ -64,7 +67,8 @@ function genConfig (options) {
     },
     output: {
       globals: {
-        'vue': 'Vue'
+        'vue': 'Vue',
+        'axios': 'axios'
       },
       banner: common.banner,
       name: options.name,
@@ -97,7 +101,7 @@ module.exports = {
   uglifyOptions: common.uglifyOptions,
   paths: common.paths,
   utils: {
-    stats ({ path }) {
+    stats({ path }) {
       const code = fs.readFileSync(path);
       const { size } = fs.statSync(path);
       const gzipped = gzipSize.sync(code);

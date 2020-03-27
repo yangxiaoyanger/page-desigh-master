@@ -66,7 +66,7 @@
       </slot>
 
       <!-- 右键菜单 -->
-      <context-menu></context-menu>
+      <!-- <context-menu></context-menu> -->
     </div>
   </div>
 </template>
@@ -79,7 +79,7 @@ import { move } from "../../mixins";
 import vpd from "../../mixins/vpd";
 import { cumulativeOffset, checkInView } from "../../utils/offset";
 import scale from "./scale.vue";
-import contextMenu from "../contextMenu";
+// import contextMenu from "../contextMenu";
 import bus from "../../utils/bus";
 
 export default {
@@ -88,8 +88,8 @@ export default {
     ref: ref, // 参考线
     control: control, // 尺寸控制
     widgetRefLine: widgetRefLine, // 界限
-    scale, // 刻度尺
-    contextMenu // 右键菜单
+    scale // 刻度尺
+    // contextMenu // 右键菜单
   },
 
   mixins: [move, vpd],
