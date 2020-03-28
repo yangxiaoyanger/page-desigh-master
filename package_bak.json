@@ -1,20 +1,30 @@
 {
   "name": "vue-page-designer-ytt",
-  "version": "5.0.1",
+  "version": "4.0.4",
   "description": "A vue component for drag-and-drop to design and build mobile website.",
   "repository": {
     "url": "yangxiaoyanger/vue-page-designer-ytt",
     "type": "git"
   },
-  "main": "dist/vue-page-designer-ytt.js",
+  "main": "dist/ldc-ui.js",
   "private": false,
+  // "module": "dist/vue-page-designer-ytt.esm.js",
+  // "unpkg": "dist/vue-page-designer-ytt.min.js",
+  // "main": "dist/vue-page-designer-ytt.js",
+  // "style": "dist/vue-page-designer-ytt.css",
+  // "license": "WTFPL",
+  // "files": [
+  //   "dist/*.js",
+  //   "dist/*.css"
+  // ],
   "scripts": {
     "bump": "standard-version",
     "dist:style": "gulp --gulpfile scripts/build-style.js",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue ./src ./example --fix",
     "icon": "node scripts/icon.js",
-    "build": "webpack --config  scripts/webpack.conf.js",
+    "build": "node scripts/webpack-conf.js",
+    // "build": "cross-env NODE_ENV=production node --max-old-space-size=8192 scripts/build.js && npm run dist:style",
     "dev": "webpack-dev-server --hot --inline --config ./example/webpack.config.js",
     "start": "npm run dev",
     "build:example": "cross-env NODE_ENV=production webpack --config ./example/webpack.config.js",
