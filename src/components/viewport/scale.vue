@@ -408,7 +408,6 @@ export default {
   },
   created: function() {
     let _t = this;
-    console.log(_t, 88888);
     // 监听事件
     bus.$on("XPE/scale/guides/drag/move", function(info) {
       _t.handleGuidesMove(info);

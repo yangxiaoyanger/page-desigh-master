@@ -107,12 +107,17 @@ export default {
   computed: {
     // 已添加的组件
     widgetStore() {
-      console.log(this.$vpd, 6666)
+      console.log(
+        this.$vpd,
+        this.$vpd.state.widgets.filter(item => item.belong === "page"),
+        666633333
+      );
       return this.$vpd.state.widgets.filter(item => item.belong === "page");
     },
 
     // 画布高度
     height() {
+      console.log(this.$vpd.state.page.height, 88888777);
       return this.$vpd.state.page.height;
     },
 

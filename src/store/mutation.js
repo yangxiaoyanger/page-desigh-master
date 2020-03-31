@@ -195,14 +195,14 @@ export default {
     if (setting.isContainer) {
       setting.name = def.uuid
     }
-    console.log(item, 'addwidght')
-
     if (data) {
       data.forEach(function (val) {
         state.widgets.push(Object.assign(setting, val, def))
+        console.log(item, state.widgets, 'addwidght')
       })
     } else {
       state.widgets.push(Object.assign(setting, def))
+      console.log(item, state.widgets, 'addwidght2')
     }
   },
 

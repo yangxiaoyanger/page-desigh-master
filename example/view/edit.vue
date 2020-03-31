@@ -1,14 +1,13 @@
 <template>
-    <div>
-     <vue-page-designer
+  <div>
+    <vue-page-designer
       :value="value"
       :widgets="widgets"
       :upload="handleUpload"
       :upload-option="uploadOption"
       @save="handleSave"
     />
-    </div>
-   
+  </div>
 </template>
 
 <script>
@@ -19,8 +18,8 @@ export default {
     return {
       value: null,
       widgets,
-       uploadOption: {
-        url: 'https://jsonplaceholder.typicode.com/photos'
+      uploadOption: {
+        url: "https://jsonplaceholder.typicode.com/photos"
       }
     };
   },
@@ -35,6 +34,7 @@ export default {
   methods: {
     handleSave(data) {
       console.log("saving:", data);
+      console.log(this, 888);
       window.localStorage.setItem("vpd-data", JSON.stringify(data));
     },
     handleUpload(files) {
