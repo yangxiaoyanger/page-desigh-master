@@ -12,6 +12,7 @@ import Router from 'vue-router'
 import Preview from './view/preview.vue'
 import Edit from './view/edit.vue'
 import DataV from '@jiaminghi/data-view'
+import tree from "vue-giant-tree";
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -31,6 +32,7 @@ Vue.use(ViewUI)
 Vue.use(VueCodemirror)
 Vue.use(Router)
 Vue.use(DataV)
+Vue.use(tree)
 
 new Vue({ // eslint-disable-line no-new
   // el: '#app',
