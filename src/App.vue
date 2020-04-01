@@ -75,6 +75,7 @@ export default {
     Vue.use(widget, {
       widgets: this.widgets
     });
+    console.log('33333337')
     // 初始化已有数据
     if (this.value) {
       this.$vpd.replaceState(this.value);

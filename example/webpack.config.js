@@ -11,13 +11,13 @@ const env = process.env.NODE_ENV
 const production = env === 'production'
 
 // render page
-const page = (name) => {
-  return new HtmlWebpackPlugin({
-    inject: true,
-    template: path.join(__dirname, `./${name}.html`),
-    filename: path.join(__dirname, `./dist/${name}.html`)
-  })
-}
+// const page = (name) => {
+//   return new HtmlWebpackPlugin({
+//     inject: true,
+//     template: path.join(__dirname, `./${name}.html`),
+//     filename: path.join(__dirname, `./dist/${name}.html`)
+//   })
+// }
 
 
 const assetsPath = function (_path) {
@@ -47,7 +47,7 @@ const config = {
     new webpack.LoaderOptionsPlugin({ options: {} }),
     new FriendlyErrorsWebpackPlugin(),
     new ProgressBarPlugin(),
-    page('index')
+    // page('index')
   ],
   watchOptions: {
     aggregateTimeout: 300,
