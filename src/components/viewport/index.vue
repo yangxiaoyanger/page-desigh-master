@@ -108,11 +108,13 @@ export default {
     // 已添加的组件
     widgetStore() {
       console.log(
-        this.$vpd,
+        this,
+        this.$vpd.state,
+        this.$vpd.state.widgets,
         this.$vpd.state.widgets.filter(item => item.belong === "page"),
         666633333
       );
-      return this.$vpd.state.widgets.filter(item => item.belong === "page");
+      return this.$vpd.state.widgets;
     },
 
     // 画布高度

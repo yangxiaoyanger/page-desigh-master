@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ViewUI from 'view-design';
-import vuePageDesigner from '../src'
+import vuePageDesigner from './page-design/vue-page-designer-ytt';
+import './page-design/vue-page-designer-ytt.css';
 import 'view-design/dist/styles/iview.css';
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
