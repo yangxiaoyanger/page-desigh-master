@@ -110,12 +110,6 @@ export default {
       this.$vpd.commit("updateWidgets", treeNodes);
       let treeObj = this.$refs.widgetTree.ztreeObj;
       treeObj.expandAll();
-      console.log(treeObj, 888);
-      // let treeNodes = this.$refs.widgetTree.ztreeObj.getNodes()
-      // for (let i = 0; i < treeNodes.length; i++) {
-      //   // 设置节点展开
-      //   treeObj.expandNode(treeNodes[i], true, false, false)
-      // }
     }
   }
 };

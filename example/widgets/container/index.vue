@@ -5,9 +5,9 @@
     :style="{
       display: val.display,
       position: 'absolute',
-      width: val.width / 12.8 + '%',
+      width: val.width / w * 100 + '%',
       height: val.height / h * 100 + '%',
-      left: val.left / 12.8 + '%',
+      left: val.left / w * 100 + '%',
       top: val.top / h * 100 + '%',
       zIndex: val.z,
       backgroundColor: val.bgColor,
@@ -46,7 +46,7 @@ export default {
     draggable: true,
     resizable: true,
     name: "",
-    width: 650,
+    width: 680,
     height: 300,
     left: 50,
     top: 0,
@@ -64,7 +64,7 @@ export default {
     belong: "page",
     animationName: ""
   },
-  props: ["h", "val", "playState"]
+  props: ["h", "val", "w", "playState"]
 };
 </script>
 

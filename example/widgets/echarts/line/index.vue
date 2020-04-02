@@ -3,7 +3,7 @@
     ref="line"
     :style="{
       position: 'absolute',
-      width: val.width / 12.8 + '%',
+      width: val.width / w * 100 + '%',
       height: val.height + 'px',
       left: val.left + 'px',
       top: val.top + 'px',

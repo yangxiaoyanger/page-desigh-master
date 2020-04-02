@@ -21,7 +21,7 @@
         :key="val.uuid"
         :val="val"
         :h="height"
-        :w="750"
+        :w="width"
         :data-type="val.type"
         :data-uuid="val.uuid"
         :play-state="playState"
@@ -39,8 +39,8 @@
           :class="{'g-active': id === child.uuid}"
           :key="child.uuid"
           :val="child"
-          :h="height"
-          :w="750"
+          :h="val.height"
+          :w="val.width"
           :data-type="child.type"
           :data-uuid="child.uuid"
           :play-state="playState"
@@ -107,25 +107,22 @@ export default {
   computed: {
     // 已添加的组件
     widgetStore() {
-      console.log(
-        this,
-        this.$vpd.state,
-        this.$vpd.state.widgets,
-        this.$vpd.state.widgets.filter(item => item.belong === "page"),
-        666633333
-      );
-      return this.$vpd.state.widgets;
+      return this.$vpd.state.widgets.filter(item => item.belong === "page");
     },
 
     // 画布高度
     height() {
-      console.log(this.$vpd.state.page.height, 88888777);
+      console.log(this.$vpd.state.page, "height", 98888);
       return this.$vpd.state.page.height;
+    },
+    // 画布宽度
+    width() {
+      console.log(this.$vpd.state.page.width, "width 0000", 98888);
+      return this.$vpd.state.page.width;
     },
 
     // 页面背景色
     backgroundColor() {
-      console.log(this.$vpd.state.page);
       return this.$vpd.state.page.backgroundColor;
     },
 

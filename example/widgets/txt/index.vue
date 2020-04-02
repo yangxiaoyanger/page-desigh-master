@@ -7,9 +7,9 @@
     @blur="(e) => updateText(e, val.uuid)"
     :style="{
       position: val.belong === 'page' ? 'absolute' : 'relative',
-      left: val.belong === 'page' ? val.left / 12.8 + '%' : '0',
+      left: val.belong === 'page' ? val.left / w * 100 + '%' : '0',
       top: val.belong === 'page' ? val.top / h * 100 + '%' : '0',
-      width: val.width / 12.8 + '%',
+      width: val.width / w * 100+ '%',
       minHeight: val.height / h * 100 + '%',
       backgroundColor: val.bgColor,
       zIndex: val.z,
@@ -63,7 +63,6 @@ export default {
 
   methods: {
     updateText(e, uuid) {
-      console.log(this, 76666);
       let text = e.target.innerHTML;
       this.$vpd.commit("updateData", {
         uuid: uuid,

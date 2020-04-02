@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ViewUI from 'view-design';
-import vuePageDesigner from './page-design/vue-page-designer-ytt';
-import './page-design/vue-page-designer-ytt.css';
+import vuePageDesigner from '../src'
 import 'view-design/dist/styles/iview.css';
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
@@ -11,6 +10,10 @@ import Router from 'vue-router'
 import Preview from './view/preview.vue'
 import Edit from './view/edit.vue'
 import DataV from '@jiaminghi/data-view'
+
+// import vuePageDesigner from './page-design/vue-page-designer-ytt';
+// import './page-design/vue-page-designer-ytt.css';
+// import tree from "vue-giant-tree";
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -30,6 +33,7 @@ Vue.use(ViewUI)
 Vue.use(VueCodemirror)
 Vue.use(Router)
 Vue.use(DataV)
+// Vue.use(tree)
 
 new Vue({ // eslint-disable-line no-new
   // el: '#app',

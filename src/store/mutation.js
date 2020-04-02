@@ -126,9 +126,11 @@ export default {
       widgets = [widgets]
     }
     widgets.forEach(widget => {
+      // 循环现有的widgets
       state.widgets.forEach(stateItem => {
         if (stateItem.uuid == widget.uuid) {
           widget.belong = widget.belong == null ? 'page' : widget.belong
+
           result.push(widget)
           // 如果是echarts插件就要重绘
           if (stateItem.isEcharts) {

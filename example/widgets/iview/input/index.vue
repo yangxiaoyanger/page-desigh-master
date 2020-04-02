@@ -17,9 +17,9 @@
     :autofocus="val.autofocus"
     :style="{
       position: 'absolute',
-      width: val.width / 12.8 + '%',
+      width: val.width / w * 100 + '%',
       height: val.height / h * 100 + '%',
-      left: val.left / 12.8 + '%',
+      left: val.left / w * 100 + '%',
       top: val.top / h * 100 + '%',
       zIndex: val.z,
       backgroundColor: val.bgColor,

@@ -1,22 +1,26 @@
 <template>
-    <pre-view
-    :value="value"
+  <div>
+    <vue-page-designer2
+      :value="value"
       :widgets="widgets"
+      :upload="handleUpload"
+      :upload-option="uploadOption"
+      @save="handleSave"
     />
+  </div>
 </template>
 
 <script>
-import preView from "../../src/components/preview/index.vue";
 import widgets from "../widgets";
 
 export default {
-    components: {
-    preView
-  },
   data() {
     return {
       value: null,
-      widgets
+      widgets,
+      uploadOption: {
+        url: "https://jsonplaceholder.typicode.com/photos"
+      }
     };
   },
 
@@ -28,6 +32,20 @@ export default {
   },
 
   methods: {
+    handleSave(data) {
+      console.log("saving:", data);
+      console.log(this, 888);
+      window.localStorage.setItem("vpd-data", JSON.stringify(data));
+    },
+    handleUpload(files) {
+      console.log("uploading:", files);
+      return new Promise(resolve => {
+        resolve({
+          files: files,
+          status: 200
+        });
+      });
+    }
   }
 };
 </script>

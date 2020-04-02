@@ -8,8 +8,9 @@
         left: elm.left + 'px'
       }"
       class="verti"
-      @mousedown="handlemousedown($event, 'left', 'left', 'width')">
-      <div class="square"/>
+      @mousedown="handlemousedown($event, 'left', 'left', 'width')"
+    >
+      <div class="square" />
     </div>
 
     <!-- 右 -->
@@ -20,8 +21,9 @@
         left: elm.left + elm.width + 'px'
       }"
       class="verti"
-      @mousedown="handlemousedown($event, 'right', 'width')">
-      <div class="square"/>
+      @mousedown="handlemousedown($event, 'right', 'width')"
+    >
+      <div class="square" />
     </div>
 
     <!-- 上 -->
@@ -32,8 +34,9 @@
         left: elm.left + 'px'
       }"
       class="horiz"
-      @mousedown="handlemousedown($event, 'up', 'top', 'height')">
-      <div class="square"/>
+      @mousedown="handlemousedown($event, 'up', 'top', 'height')"
+    >
+      <div class="square" />
     </div>
 
     <!-- 下 -->
@@ -44,64 +47,66 @@
         left: elm.left + 'px'
       }"
       class="horiz"
-      @mousedown="handlemousedown($event, 'down', 'height')">
-      <div class="square"/>
+      @mousedown="handlemousedown($event, 'down', 'height')"
+    >
+      <div class="square" />
     </div>
   </div>
 </template>
 
 <script>
-import vpd from '../../mixins/vpd'
+import vpd from "../../mixins/vpd";
 export default {
   mixins: [vpd],
-  data () {
+  data() {
     return {
-      type: '' // 调整方向 left | right | up | down
-    }
+      type: "" // 调整方向 left | right | up | down
+    };
   },
   computed: {
-    elm () {
-      var target = this.$vpd.state.activeElement
+    elm() {
+      var target = this.$vpd.state.activeElement;
 
-      if (!target.resizable || target.belong !== 'page') return ''
-
-      return target
+      // if (!target.resizable || target.belong !== "page") return "";
+      if (!target.resizable) return "";
+      console.log(target, 87777);
+      return target;
     }
   },
 
   methods: {
-    handlemousedown (e, type, originX, originY) {
-      e.stopPropagation()
-      this.type = type
-      this.$vpd.commit('initmove', {
+    handlemousedown(e, type, originX, originY) {
+      e.stopPropagation();
+      this.type = type;
+      this.$vpd.commit("initmove", {
         startX: e.pageX,
         startY: e.pageY,
         originX: this.elm[originX],
         originY: this.elm[originY]
-      })
+      });
 
-      document.addEventListener('mousemove', this.handlemousemove, true)
-      document.addEventListener('mouseup', this.handlemouseup, true)
+      document.addEventListener("mousemove", this.handlemousemove, true);
+      document.addEventListener("mouseup", this.handlemouseup, true);
     },
 
-    handlemousemove (e) {
-      e.stopPropagation()
-      e.preventDefault()
+    handlemousemove(e) {
+      e.stopPropagation();
+      e.preventDefault();
 
-      this.$vpd.commit('resize', {
+      this.$vpd.commit("resize", {
         x: e.pageX,
         y: e.pageY,
         type: this.type
-      })
+      });
     },
 
-    handlemouseup () {
-      document.removeEventListener('mousemove', this.handlemousemove, true)
-      document.removeEventListener('mouseup', this.handlemouseup, true)
-      this.$vpd.commit('stopmove')
+    handlemouseup() {
+      document.removeEventListener("mousemove", this.handlemousemove, true);
+      document.removeEventListener("mouseup", this.handlemouseup, true);
+      this.$vpd.commit("stopmove");
     }
   }
-}
+};
 </script>
 
 <style scoped>

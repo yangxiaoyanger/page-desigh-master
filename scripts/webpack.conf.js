@@ -26,12 +26,12 @@ const assetsPath = function (_path) {
 
 console.log(122333)
 module.exports = {
-// entry: './src/main.js',
-// output: {
-//      path: path.resolve(__dirname, './dist'),
-//      publicPath: '/dist/',
-//      filename: 'build.js'
-//    },
+  // entry: './src/main.js',
+  // output: {
+  //      path: path.resolve(__dirname, './dist'),
+  //      publicPath: '/dist/',
+  //      filename: 'build.js'
+  //    },
   entry: NODE_ENV == 'development' ? './src/index.js' : './src/index.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -171,6 +171,26 @@ module.exports = {
       //   }
       // },
     ]
+  },
+  externals: {
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue'
+    },
+    tree: {
+      root: 'vue-giant-tree',
+      commonjs: 'tree',
+      commonjs2: 'tree',
+      amd: 'vue-giant-tree'
+    },
+    echarts: {
+      root: 'echarts',
+      commonjs: 'echarts',
+      commonjs2: 'echarts',
+      amd: 'echarts'
+    }
   },
   resolve: {
     extensions: ['.js', '.vue', '.json']
