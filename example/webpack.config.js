@@ -9,15 +9,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const env = process.env.NODE_ENV
 const production = env === 'production'
-
+console.log(8888888)
 // render page
-// const page = (name) => {
-//   return new HtmlWebpackPlugin({
-//     inject: true,
-//     template: path.join(__dirname, `./${name}.html`),
-//     filename: path.join(__dirname, `./dist/${name}.html`)
-//   })
-// }
+const page = (name) => {
+  return new HtmlWebpackPlugin({
+    inject: true,
+    template: path.join(__dirname, `./${name}.html`),
+    filename: path.join(__dirname, `./dist/${name}.html`)
+  })
+}
 
 
 const assetsPath = function (_path) {
@@ -47,7 +47,7 @@ const config = {
     new webpack.LoaderOptionsPlugin({ options: {} }),
     new FriendlyErrorsWebpackPlugin(),
     new ProgressBarPlugin(),
-    // page('index')
+    page('index')
   ],
   watchOptions: {
     aggregateTimeout: 300,
@@ -59,7 +59,7 @@ const config = {
     inline: true,
     stats: 'errors-only',
     host: '0.0.0.0',
-    port: 8084,
+    port: 8088,
     proxy: { // proxy URLs to backend development server
       '/api': 'http://10.0.30.208:19090'
     },

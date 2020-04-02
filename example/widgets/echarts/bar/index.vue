@@ -16,6 +16,7 @@
 </template>
 
 <script>
+
 import stylec from "./style.vue";
 import echarts from "echarts";
 // import { on, off } from "@/libs/tools";

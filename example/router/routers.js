@@ -11,12 +11,12 @@ export default [
     },
     component: User
   },
-  {
-    path: '/preview',
-    name: 'preview',
-    meta: {
-      title: '预览'
-    },
-    component: () => import('../view/preview.vue')
-  }
+//   {
+//     path: '/preview',
+//     name: 'preview',
+//     meta: {
+//       title: '预览'
+//     },
+//     component: () => import('../view/preview.vue')
+//   }
 ]

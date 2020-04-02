@@ -187,7 +187,6 @@ module.exports = {
       commonjs: 'vue',
       commonjs2: 'vue',
       amd: 'vue'
-<<<<<<< HEAD
     },
     tree: {
       root: 'vue-giant-tree',
@@ -201,15 +200,6 @@ module.exports = {
       commonjs2: 'echarts',
       amd: 'echarts'
     }
-=======
-    }
-    // 'vue-giant-tree': {
-    //   commonjs: 'tree', // 如果我们的库运行在Node.js环境中，import _ from 'lodash'等价于const _ = require('lodash')
-    //   commonjs2: 'tree', // 同上
-    //   amd: 'tree', // 如果我们的库使用require.js等加载,等价于 define(["lodash"], factory);
-    //   root: 'tree'// 如果我们的库在浏览器中使用，需要提供一个全局的变量‘_’，等价于 var _ = (window._) or (_);
-    // }
->>>>>>> dc3acecc2382840a165e8f1288ce939b511effaa
   },
   resolve: {
     extensions: ['.js', '.vue', '.json']

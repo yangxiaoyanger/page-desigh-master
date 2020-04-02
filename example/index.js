@@ -10,9 +10,6 @@ import Router from 'vue-router'
 import Preview from './view/preview.vue'
 import Edit from './view/edit.vue'
 import DataV from '@jiaminghi/data-view'
-// import vuePageDesigner from './page-design/vue-page-designer-ytt';
-// import './page-design/vue-page-designer-ytt.css';
-// import tree from "vue-giant-tree";
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是

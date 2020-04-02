@@ -8,7 +8,7 @@
 export default {
   name: "App",
   created() {
-    console.log("oooooo");
+    console.log('99999999')
   }
 };
 </script>
