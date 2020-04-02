@@ -2,19 +2,16 @@ var path = require('path')
 var webpack = require('webpack')
 const NODE_ENV = process.env.NODE_ENV;
 
-
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = process.env.NODE_ENV
 const production = env === 'production'
-
-
-
 
 const assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -24,7 +21,7 @@ const assetsPath = function (_path) {
   return path.posix.join(assetsSubDirectory, _path)
 }
 
-console.log(122333)
+console.log(4444)
 module.exports = {
   // entry: './src/main.js',
   // output: {
@@ -49,7 +46,15 @@ module.exports = {
     new VueLoaderPlugin(),
     new webpack.LoaderOptionsPlugin({ options: {} }),
     new FriendlyErrorsWebpackPlugin(),
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
+    new UglifyJsPlugin({
+      sourceMap: true,
+      parallel: true,
+      uglifyOptions: {
+        keep_classnames: true,
+        keep_fnames: true
+      }
+    })
   ],
   watchOptions: {
     aggregateTimeout: 300,
@@ -79,7 +84,10 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: { babelrc: true }
+          options: {
+            babelrc: true,
+            sourceMap: true
+          }
         }
       },
       {
@@ -101,13 +109,14 @@ module.exports = {
           {
             loader: 'vue-loader',
             options: {
-
+              sourceMap: true
             }
           },
           {
             loader: 'iview-loader',
             options: {
-              prefix: false
+              prefix: false,
+              sourceMap: true
             }
           }
         ]
@@ -178,6 +187,7 @@ module.exports = {
       commonjs: 'vue',
       commonjs2: 'vue',
       amd: 'vue'
+<<<<<<< HEAD
     },
     tree: {
       root: 'vue-giant-tree',
@@ -191,6 +201,15 @@ module.exports = {
       commonjs2: 'echarts',
       amd: 'echarts'
     }
+=======
+    }
+    // 'vue-giant-tree': {
+    //   commonjs: 'tree', // 如果我们的库运行在Node.js环境中，import _ from 'lodash'等价于const _ = require('lodash')
+    //   commonjs2: 'tree', // 同上
+    //   amd: 'tree', // 如果我们的库使用require.js等加载,等价于 define(["lodash"], factory);
+    //   root: 'tree'// 如果我们的库在浏览器中使用，需要提供一个全局的变量‘_’，等价于 var _ = (window._) or (_);
+    // }
+>>>>>>> dc3acecc2382840a165e8f1288ce939b511effaa
   },
   resolve: {
     extensions: ['.js', '.vue', '.json']
