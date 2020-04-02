@@ -1,13 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ViewUI from 'view-design';
-<<<<<<< HEAD
 import vuePageDesigner from '../src'
-=======
-import vuePageDesigner from './page-design/vue-page-designer-ytt';
-// import vuePageDesigner from '../src';
-import './page-design/vue-page-designer-ytt.css';
->>>>>>> dc3acecc2382840a165e8f1288ce939b511effaa
 import 'view-design/dist/styles/iview.css';
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
@@ -16,8 +10,6 @@ import Router from 'vue-router'
 import Preview from './view/preview.vue'
 import Edit from './view/edit.vue'
 import DataV from '@jiaminghi/data-view'
-import tree from "vue-giant-tree";
-
 // import vuePageDesigner from './page-design/vue-page-designer-ytt';
 // import './page-design/vue-page-designer-ytt.css';
 // import tree from "vue-giant-tree";
@@ -40,11 +32,6 @@ Vue.use(ViewUI)
 Vue.use(VueCodemirror)
 Vue.use(Router)
 Vue.use(DataV)
-<<<<<<< HEAD
-// Vue.use(tree)
-=======
-Vue.use(tree)
->>>>>>> dc3acecc2382840a165e8f1288ce939b511effaa
 
 new Vue({ // eslint-disable-line no-new
   // el: '#app',

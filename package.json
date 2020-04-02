@@ -1,10 +1,6 @@
 {
   "name": "vue-page-designer-ytt",
-<<<<<<< HEAD
   "version": "7.0.1",
-=======
-  "version": "6.0.4",
->>>>>>> dc3acecc2382840a165e8f1288ce939b511effaa
   "description": "A vue component for drag-and-drop to design and build mobile website.",
   "repository": {
     "url": "yangxiaoyanger/vue-page-designer-ytt",
