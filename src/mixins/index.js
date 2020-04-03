@@ -2,13 +2,14 @@ var move = {
   methods: {
     initmovement(e) {
       var target = this.$vpd.state.activeElement
-
       // 设置移动状态初始值
       this.$vpd.commit('initmove', {
         startX: e.pageX,
         startY: e.pageY,
         originX: target.left,
-        originY: target.top
+        originY: target.top,
+        originOffsetX: target.offsetLeft,
+        originOffsetY: target.offsetTop
       })
 
       // 绑定鼠标移动事件

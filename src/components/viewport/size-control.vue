@@ -4,8 +4,8 @@
     <div
       :style="{
         height: elm.height + 'px',
-        top: elm.top + 'px',
-        left: elm.left + 'px'
+        top: elm.offsetTop + 'px',
+        left: elm.offsetLeft + 'px'
       }"
       class="verti"
       @mousedown="handlemousedown($event, 'left', 'left', 'width')"
@@ -17,8 +17,8 @@
     <div
       :style="{
         height: elm.height + 'px',
-        top: elm.top + 'px',
-        left: elm.left + Number(elm.width) + 'px'
+        top: elm.offsetTop + 'px',
+        left: elm.offsetLeft + Number(elm.width) + 'px'
       }"
       class="verti"
       @mousedown="handlemousedown($event, 'right', 'width')"
@@ -30,8 +30,8 @@
     <div
       :style="{
         width: elm.width + 'px',
-        top: elm.top + 'px',
-        left: elm.left + 'px'
+        top: elm.offsetTop + 'px',
+        left: elm.offsetLeft + 'px'
       }"
       class="horiz"
       @mousedown="handlemousedown($event, 'up', 'top', 'height')"
@@ -43,8 +43,8 @@
     <div
       :style="{
         width: elm.width + 'px',
-        top: elm.top +  Number(elm.height) + 'px',
-        left: elm.left + 'px'
+        top: elm.offsetTop + Number(elm.height) + 'px',
+        left: elm.offsetLeft + 'px'
       }"
       class="horiz"
       @mousedown="handlemousedown($event, 'down', 'height')"
@@ -69,7 +69,6 @@ export default {
 
       // if (!target.resizable || target.belong !== "page") return "";
       if (!target.resizable) return "";
-      console.log(target, 87777);
       return target;
     }
   },

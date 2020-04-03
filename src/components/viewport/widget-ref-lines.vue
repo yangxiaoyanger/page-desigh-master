@@ -50,10 +50,10 @@ export default {
           uuid: activeElement.uuid,
           width: activeElement.width,
           height: activeElement.height,
-          top: activeElement.top,
-          bottom: activeElement.top + h,
-          left: activeElement.left,
-          right: activeElement.left + w * 2
+          top: activeElement.offsetTop,
+          bottom: activeElement.offsetTop + h,
+          left: activeElement.offsetLeft,
+          right: activeElement.offsetLeft + w * 2
         };
       }
       return target;

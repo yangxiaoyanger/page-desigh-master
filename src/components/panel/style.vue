@@ -78,7 +78,7 @@
         <vpd-icon name="layout" />
         <div class="panel-label">所属容器</div>
         <div class="panel-value">
-          <Select v-model="activeElement.belong">
+          <Select v-model="activeElement.belong" @on-change="updateWidget">
             <Option v-for="(val, index) in containerName" :key="index" :value="val">{{ val }}</Option>
           </Select>
         </div>
@@ -130,6 +130,11 @@ export default {
       );
 
       return arr;
+    }
+  },
+  methods: {
+    updateWidget() {
+      this.$vpd.commit("updateWidgets", [this.activeElement]);
     }
   }
 };

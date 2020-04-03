@@ -39,8 +39,8 @@
           :class="{'g-active': id === child.uuid}"
           :key="child.uuid"
           :val="child"
-          :h="height"
-          :w="width"
+          :h="val.height"
+          :w="val.width"
           :data-type="child.type"
           :data-uuid="child.uuid"
           :play-state="playState"
@@ -66,7 +66,7 @@
       </slot>
 
       <!-- 右键菜单 -->
-      <!-- <context-menu></context-menu> -->
+      <context-menu></context-menu>
     </div>
   </div>
 </template>
@@ -79,7 +79,7 @@ import { move } from "../../mixins";
 import vpd from "../../mixins/vpd";
 import { cumulativeOffset, checkInView } from "../../utils/offset";
 import scale from "./scale.vue";
-// import contextMenu from "../contextMenu";
+import contextMenu from "../contextMenu";
 import bus from "../../utils/bus";
 
 export default {
@@ -88,8 +88,8 @@ export default {
     ref: ref, // 参考线
     control: control, // 尺寸控制
     widgetRefLine: widgetRefLine, // 界限
-    scale // 刻度尺
-    // contextMenu // 右键菜单
+    scale, // 刻度尺
+    contextMenu // 右键菜单
   },
 
   mixins: [move, vpd],
@@ -192,15 +192,28 @@ export default {
     handleMouseOverOnNode(node, e) {
       // console.log("handleMouseOverOnNode", node, e);
     },
-    handleDropOnNode(parentNode, e) {
+    handleDropOnNode(parentNode, event) {
+      console.log(parentNode, event, 766666);
       // 如果是可以嵌套的
       if (parentNode.isContainer && parentNode.name) {
-        // 当时从左侧组件库中drop进来
+        // 直接从工具栏中拖出来时
         if (event.dataTransfer.getData("node")) {
           let nodeInfo = JSON.parse(event.dataTransfer.getData("node"));
-          console.log(nodeInfo, "从左侧的组件库中来 handleDropOnNode");
-          nodeInfo.setting.belong = parentNode.uuid;
-          console.log("handleDropOnNode", parentNode, nodeInfo);
+
+          // nodeInfo.setting.belong = parentNode.uuid;
+          let offsetX = event.offsetX;
+          let offsetY = event.offsetY;
+          let setting = {
+            left: offsetX - parentNode.offsetLeft,
+            top: offsetY - parentNode.offsetTop,
+            offsetTop: offsetY,
+            offsetLeft: offsetX,
+            belong: parentNode.uuid
+          };
+          nodeInfo.setting = {
+            ...nodeInfo.setting,
+            ...setting
+          };
           this.$vpd.dispatch("addWidget", nodeInfo);
         } else {
           // let nodeInfo = this.$vpd.state.activeElement;
@@ -217,9 +230,11 @@ export default {
       let offsetY = event.offsetY;
       let setting = {
         left: offsetX,
-        top: offsetY
+        top: offsetY,
+        offsetTop: offsetY,
+        offsetLeft: offsetX
       };
-      // console.log('style', style)
+      console.log("style", setting);
       nodeInfo.setting = {
         ...nodeInfo.setting,
         ...setting

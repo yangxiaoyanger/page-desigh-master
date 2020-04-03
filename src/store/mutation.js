@@ -21,6 +21,8 @@ export default {
     state.startY = payload.startY
     state.originX = payload.originX
     state.originY = payload.originY
+    state.originOffsetX = payload.originOffsetX
+    state.originOffsetY = payload.originOffsetY
     state.moving = true
   },
 
@@ -36,9 +38,13 @@ export default {
     var dy = payload.y - state.startY
     var left = state.originX + Math.floor(dx * 100 / state.zoom)
     var top = state.originY + Math.floor(dy * 100 / state.zoom)
+    var offsetLeft = state.originOffsetX + Math.floor(dx * 100 / state.zoom)
+    var offsetTop = state.originOffsetY + Math.floor(dy * 100 / state.zoom)
 
     target.left = left > 0 ? left : 0
     target.top = top > 0 ? top : 0
+    target.offsetTop = offsetTop > 0 ? offsetTop : 0
+    target.offsetLeft = offsetLeft > 0 ? offsetLeft : 0
 
   },
 
@@ -69,6 +75,7 @@ export default {
       var left = state.originX + Math.floor(dx * 100 / state.zoom)
       var width = state.originY - Math.floor(dx * 100 / state.zoom)
       state.activeElement.left = left > 0 ? left : 0
+      state.activeElement.offsetLeft = left > 0 ? left : 0
       state.activeElement.width = width > 10 ? width : 10
       return
     }
@@ -77,6 +84,7 @@ export default {
       var top = state.originX + Math.floor(dy * 100 / state.zoom)
       var height = state.originY - Math.floor(dy * 100 / state.zoom)
       state.activeElement.top = top > 0 ? top : 0
+      state.activeElement.offsetTop = top > 0 ? top : 0
       state.activeElement.height = height > 10 ? height : 10
     }
   },
@@ -126,16 +134,28 @@ export default {
       widgets = [widgets]
     }
     widgets.forEach(widget => {
+      // 更新的组件的位置会因为belong的改变而发生变化
+      widget.belong = widget.belong == null ? 'page' : widget.belong
+      if (widget.belong == 'page') {
+        widget.offsetLeft = widget.left;
+        widget.offsetTop = widget.top;
+      } else {
+        var parentWidget = state.widgets.filter(item => {
+          return item.uuid == widget.belong;
+        })
+        widget.offsetLeft = parentWidget[0].offsetLeft + widget.left;
+        widget.offsetTop = parentWidget[0].offsetTop + widget.top;
+      }
       // 循环现有的widgets
       state.widgets.forEach(stateItem => {
         if (stateItem.uuid == widget.uuid) {
-          widget.belong = widget.belong == null ? 'page' : widget.belong
-
           result.push(widget)
-          // 如果是echarts插件就要重绘
-          if (stateItem.isEcharts) {
-            let dom = echarts.getInstanceByDom(document.querySelector('#viewport .g-active'))
-            dom.setOption(stateItem.option)
+          if (state.activeElement.uuid == widget.uuid) {
+            state.activeElement = widget
+          }
+          // 如果是当前的焦点元素就更新下
+          if (state.activeElement.uuid == widget.uuid) {
+            state.activeElement = widget
           }
         } else {
           result.push(stateItem)
@@ -154,7 +174,6 @@ export default {
     state.activeElement = state.page
   },
   preview(state, val) {
-    console.log(val, 8888)
     state.previewstatus = val
   },
 
@@ -189,7 +208,7 @@ export default {
     item
   }) {
     let def = {
-      top: state.top,
+      // top: state.top,
       uuid: item.setting.name + generate('1234567890abcdef', 10)
     }
     let setting = JSON.parse(JSON.stringify(item.setting))
@@ -200,11 +219,9 @@ export default {
     if (data) {
       data.forEach(function (val) {
         state.widgets.push(Object.assign(setting, val, def))
-        console.log(item, state.widgets, 'addwidght')
       })
     } else {
       state.widgets.push(Object.assign(setting, def))
-      console.log(item, state.widgets, 'addwidght2')
     }
   },
 

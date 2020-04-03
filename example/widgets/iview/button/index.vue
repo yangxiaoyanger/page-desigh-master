@@ -52,6 +52,8 @@ export default {
     height: 60,
     left: 50,
     top: 0,
+    offsetLeft: 50,
+    offsetTop: 0,
     z: 0,
     bgColor: "#fff",
     backPic: "",

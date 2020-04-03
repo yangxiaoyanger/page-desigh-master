@@ -49,6 +49,8 @@ export default {
     width: 680,
     height: 300,
     left: 50,
+    offsetLeft: 50,
+    offsetTop: 0,
     top: 0,
     z: 0,
     display: "flex",
