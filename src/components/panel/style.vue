@@ -5,7 +5,7 @@
       <vpd-icon name="layers" />
       <div class="panel-label">层级</div>
       <div class="panel-value">
-        <Input v-model="activeElement.z" />
+        <Input type="number" v-model="activeElement.z" />
       </div>
     </div>
 
@@ -13,7 +13,7 @@
       <vpd-icon name="more-horizontal" />
       <div class="panel-label">宽度</div>
       <div class="panel-value">
-        <Input v-model="activeElement.width" />
+        <Input type="number" v-model="activeElement.width" />
       </div>
     </div>
 
@@ -21,7 +21,7 @@
       <vpd-icon name="more-vertical" />
       <div class="panel-label">高度</div>
       <div class="panel-value">
-        <Input v-model="activeElement.height" />
+        <Input type="number" v-model="activeElement.height" />
       </div>
     </div>
 
@@ -29,7 +29,7 @@
       <vpd-icon name="arrow-right" />
       <div class="panel-label">横坐标</div>
       <div class="panel-value">
-        <Input v-model="activeElement.left" />
+        <Input type="number" v-model="activeElement.left" />
       </div>
     </div>
 
@@ -37,7 +37,7 @@
       <vpd-icon name="arrow-down" />
       <div class="panel-label">纵坐标</div>
       <div class="panel-value">
-        <Input v-model="activeElement.top" />
+        <Input type="number" v-model="activeElement.top" />
       </div>
     </div>
 

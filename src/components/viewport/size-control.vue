@@ -18,7 +18,7 @@
       :style="{
         height: elm.height + 'px',
         top: elm.top + 'px',
-        left: elm.left + elm.width + 'px'
+        left: elm.left + Number(elm.width) + 'px'
       }"
       class="verti"
       @mousedown="handlemousedown($event, 'right', 'width')"
@@ -43,7 +43,7 @@
     <div
       :style="{
         width: elm.width + 'px',
-        top: elm.top + elm.height + 'px',
+        top: elm.top +  Number(elm.height) + 'px',
         left: elm.left + 'px'
       }"
       class="horiz"

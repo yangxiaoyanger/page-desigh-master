@@ -39,8 +39,8 @@
           :class="{'g-active': id === child.uuid}"
           :key="child.uuid"
           :val="child"
-          :h="val.height"
-          :w="val.width"
+          :h="height"
+          :w="width"
           :data-type="child.type"
           :data-uuid="child.uuid"
           :play-state="playState"
@@ -112,12 +112,10 @@ export default {
 
     // 画布高度
     height() {
-      console.log(this.$vpd.state.page, "height", 98888);
       return this.$vpd.state.page.height;
     },
     // 画布宽度
     width() {
-      console.log(this.$vpd.state.page.width, "width 0000", 98888);
       return this.$vpd.state.page.width;
     },
 
