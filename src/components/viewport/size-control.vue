@@ -66,8 +66,15 @@ export default {
   computed: {
     elm() {
       var target = this.$vpd.state.activeElement;
+      // 重新计算offsetTop和offsetLeft，因为当改变父容器的位置，子元素的offsetTop和offsetLeft会发生变化
+      if (!target.page && target.belong !== "page") {
+        var parentWidget = this.$vpd.state.widgets.filter(item => {
+          return item.uuid == target.belong;
+        });
+        target.offsetLeft = parentWidget[0].offsetLeft + target.left;
+        target.offsetTop = parentWidget[0].offsetTop + target.top;
+      }
 
-      // if (!target.resizable || target.belong !== "page") return "";
       if (!target.resizable) return "";
       return target;
     }

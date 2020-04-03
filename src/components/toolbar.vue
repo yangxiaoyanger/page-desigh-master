@@ -79,7 +79,6 @@ export default {
   },
   methods: {
     handleDragStart(item, e) {
-      console.log(item, e, "handleDragStart");
       e.dataTransfer.setData("node", JSON.stringify(item));
     },
 
@@ -106,15 +105,6 @@ export default {
       return this.widgets[type].title || "";
     },
     zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType) {
-      // treeNodes.forEach(item => {
-      //   if (targetNode && item.belong == targetNode.uuid) {
-      //     item.offsetLeft += targetNode.offsetLeft;
-      //     item.offsetTop += targetNode.offsetTop;
-      //   } else {
-      //     item.offsetLeft = item.left;
-      //     item.offsetTop = item.top;
-      //   }
-      // });
       this.$vpd.commit("updateWidgets", treeNodes);
       let treeObj = this.$refs.widgetTree.ztreeObj;
       treeObj.expandAll();

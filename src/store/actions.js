@@ -1,9 +1,7 @@
 export default {
   addWidget({ state, commit, store }, item) {
-    console.log('commit addwidget', state.widgets, 8777)
     if (item.setting.isUpload) {
       store.$emit('upload', (payload) => {
-        console.log('payload', payload, item)
         commit('addWidget', { data: payload, item })
       }, true)
     } else {
