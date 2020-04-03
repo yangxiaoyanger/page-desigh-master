@@ -56,7 +56,7 @@ export default {
     animationName: "",
     borderType: "dvBorderBox-1"
   },
-  props: ["h", "val", "playState"]
+  props: ["h", "val", "playState", "w"]
 };
 </script>
 

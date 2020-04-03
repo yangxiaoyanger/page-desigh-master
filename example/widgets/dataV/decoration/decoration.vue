@@ -56,7 +56,7 @@ export default {
     animationName: "",
     decorationType: "dvDecoration-1"
   },
-  props: ["h", "val", "playState"]
+  props: ["h", "val", "playState", "w"]
 };
 </script>
 
