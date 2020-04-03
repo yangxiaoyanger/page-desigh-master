@@ -62,7 +62,7 @@ export default {
     belong: "page",
     animationName: ""
   },
-  props: ["h", "val", "playState"],
+  props: ["h", "val", "playState", "w"],
 
   methods: {
     updateText(e, uuid) {

@@ -116,7 +116,7 @@ const option = {
 
 export default {
   name: WIDGET_NAME,
-  props: ["h", "val", "playState"],
+  props: ["h", "val", "playState", "w"],
   data() {
     return {
       dom: null

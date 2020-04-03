@@ -100,7 +100,7 @@ export default {
     option: option,
     isEcharts: true
   },
-  props: ["h", "val", "playState"],
+  props: ["h", "val", "playState", "w"],
 
   methods: {
     // resize() {

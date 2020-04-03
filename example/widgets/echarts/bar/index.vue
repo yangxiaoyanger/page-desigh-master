@@ -16,7 +16,6 @@
 </template>
 
 <script>
-
 import stylec from "./style.vue";
 import echarts from "echarts";
 // import { on, off } from "@/libs/tools";
@@ -95,7 +94,7 @@ export default {
     option: option,
     isEcharts: true
   },
-  props: ["h", "val", "playState"],
+  props: ["h", "val", "playState", "w"],
 
   methods: {
     // resize() {

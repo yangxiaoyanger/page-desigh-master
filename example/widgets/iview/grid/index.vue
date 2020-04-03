@@ -58,7 +58,7 @@ export default {
     animationName: "",
     colItems: "12, 12"
   },
-  props: ["h", "val", "playState"],
+  props: ["h", "val", "playState", "w"],
   computed: {},
 
   methods: {

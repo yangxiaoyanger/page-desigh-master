@@ -39,7 +39,9 @@ export default {
 
     target.left = left > 0 ? left : 0
     target.top = top > 0 ? top : 0
-
+    console.log(state, 111)
+    console.log("state.originX: " + state.originX, "state.originY: " + state.originY, 111)
+    console.log("payload.x: " + payload.x, "payload.y: " + payload.y, "target.left" + target.left, "target.top" + target.top, 8888)
   },
 
   // 调整元件尺寸

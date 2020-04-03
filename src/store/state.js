@@ -21,7 +21,7 @@ export default {
     page: true,
     title: '测试页面', // 页面 title
     height: 800, // 画布高度
-    width: 1080,
+    width: 1280,
     endTime: new Date(), // 截止日期
     backgroundColor: '#f0f3f4'
   },

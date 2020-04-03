@@ -108,7 +108,7 @@ export default {
       }
     ])
   },
-  props: ["h", "val", "playState"],
+  props: ["h", "val", "playState", "w"],
 
   methods: {
     string2JSON: function(params) {
