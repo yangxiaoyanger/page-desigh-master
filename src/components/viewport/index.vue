@@ -107,6 +107,7 @@ export default {
   computed: {
     // 已添加的组件
     widgetStore() {
+      console.log('this.$vpd.state.widgets', this.$vpd.state.widgets)
       return this.$vpd.state.widgets.filter(item => item.belong === "page");
     },
 

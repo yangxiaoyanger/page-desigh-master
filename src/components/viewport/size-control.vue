@@ -55,61 +55,63 @@
 </template>
 
 <script>
-import vpd from "../../mixins/vpd";
+import vpd from '../../mixins/vpd';
 export default {
   mixins: [vpd],
-  data() {
+  data () {
     return {
-      type: "" // 调整方向 left | right | up | down
+      type: '' // 调整方向 left | right | up | down
     };
   },
   computed: {
-    elm() {
+    elm () {
       var target = this.$vpd.state.activeElement;
       // 重新计算offsetTop和offsetLeft，因为当改变父容器的位置，子元素的offsetTop和offsetLeft会发生变化
-      if (!target.page && target.belong !== "page") {
+      if (!target.page && target.belong !== 'page') {
         var parentWidget = this.$vpd.state.widgets.filter(item => {
           return item.uuid == target.belong;
         });
-        target.offsetLeft = parentWidget[0].offsetLeft + target.left;
-        target.offsetTop = parentWidget[0].offsetTop + target.top;
+        if (parentWidget && parentWidget[0]) {
+          target.offsetLeft = parentWidget[0].offsetLeft + target.left;
+          target.offsetTop = parentWidget[0].offsetTop + target.top;
+        }
       }
 
-      if (!target.resizable) return "";
+      if (!target.resizable) return '';
       return target;
     }
   },
 
   methods: {
-    handlemousedown(e, type, originX, originY) {
+    handlemousedown (e, type, originX, originY) {
       e.stopPropagation();
       this.type = type;
-      this.$vpd.commit("initmove", {
+      this.$vpd.commit('initmove', {
         startX: e.pageX,
         startY: e.pageY,
         originX: this.elm[originX],
         originY: this.elm[originY]
       });
 
-      document.addEventListener("mousemove", this.handlemousemove, true);
-      document.addEventListener("mouseup", this.handlemouseup, true);
+      document.addEventListener('mousemove', this.handlemousemove, true);
+      document.addEventListener('mouseup', this.handlemouseup, true);
     },
 
-    handlemousemove(e) {
+    handlemousemove (e) {
       e.stopPropagation();
       e.preventDefault();
 
-      this.$vpd.commit("resize", {
+      this.$vpd.commit('resize', {
         x: e.pageX,
         y: e.pageY,
         type: this.type
       });
     },
 
-    handlemouseup() {
-      document.removeEventListener("mousemove", this.handlemousemove, true);
-      document.removeEventListener("mouseup", this.handlemouseup, true);
-      this.$vpd.commit("stopmove");
+    handlemouseup () {
+      document.removeEventListener('mousemove', this.handlemousemove, true);
+      document.removeEventListener('mouseup', this.handlemouseup, true);
+      this.$vpd.commit('stopmove');
     }
   }
 };
