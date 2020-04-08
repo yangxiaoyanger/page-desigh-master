@@ -36,7 +36,6 @@ export default {
     axios.get('http://localhost:3000/users/getWidgets')
       .then(function (response) {
         // handle success
-        console.log(response.data, 1111);
         if (response.data) {
           that.value = response.data;
         }
@@ -53,7 +52,6 @@ export default {
   methods: {
     handleSave (data) {
       console.log('saving:', data);
-      console.log(this, 888);
       window.localStorage.setItem('vpd-data', JSON.stringify(data));
     },
     handleUpload (files) {

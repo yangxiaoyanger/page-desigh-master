@@ -4,39 +4,49 @@
     <navbar />
     <div class="body container grid-xl">
       <preview v-show="showPreview" />
-      <div class="columns col-gapless" v-show="hidePreview">
-        <toolbar :zoom="zoom" class="toolbar column" />
+      <div
+        v-show="hidePreview"
+        class="columns col-gapless">
+        <toolbar
+          :zoom="zoom"
+          class="toolbar column" />
         <div class="viewport column">
           <viewport :zoom="zoom" />
           <div class="zoom-wrap">
-            <vpd-slider :value="zoom" :step="1" :tuning="false" @input="dozoom" />
+            <vpd-slider
+              :value="zoom"
+              :step="1"
+              :tuning="false"
+              @input="dozoom" />
             <div class="zoom-value">{{ zoom }}%</div>
           </div>
         </div>
         <panel class="control-panel column" />
       </div>
     </div>
-    <vpd-uploader :upload="upload" :upload-option="uploadOption" />
+    <vpd-uploader
+      :upload="upload"
+      :upload-option="uploadOption" />
     <vpd-toast />
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import widget from "./plugins/widget";
-import navbar from "./components/navbar.vue";
-import toolbar from "./components/toolbar.vue";
-import panel from "./components/panel/index.vue";
-import viewport from "./components/viewport/index.vue";
-import preview from "./components/preview/index.vue";
-import loadSprite from "./utils/load-sprite";
-import vpd from "./mixins/vpd";
-import toast from "./components/toast.vue";
-import uploader from "./components/uploader.vue";
-import slider from "./components/slider.vue";
+import Vue from 'vue';
+import widget from './plugins/widget';
+import navbar from './components/navbar.vue';
+import toolbar from './components/toolbar.vue';
+import panel from './components/panel/index.vue';
+import viewport from './components/viewport/index.vue';
+import preview from './components/preview/index.vue';
+import loadSprite from './utils/load-sprite';
+import vpd from './mixins/vpd';
+import toast from './components/toast.vue';
+import uploader from './components/uploader.vue';
+import slider from './components/slider.vue';
 
 export default {
-  name: "VuePageDesigner",
+  name: 'VuePageDesigner',
   components: {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
@@ -56,42 +66,49 @@ export default {
   },
 
   computed: {
-    zoom() {
+    zoom () {
       return this.$vpd.state.zoom;
     },
-    showPreview() {
+    showPreview () {
       return this.$vpd.state.previewstatus;
     },
-    hidePreview() {
+    hidePreview () {
       return !this.$vpd.state.previewstatus;
     }
   },
-  beforeCreate() {
+  watch: {
+    value: {
+      deep: true, // 深度监听
+      handler (newVal, oldVal) {
+        this.$vpd.replaceState(newVal);
+      }
+    }
+  },
+  beforeCreate () {
     // TODO: custom svg path by config
     // loadSprite("//unpkg.com/vue-page-designer/dist/icons.svg", "svgspriteit");
   },
-  created() {
+  created () {
     // 注册 widgets
     Vue.use(widget, {
       widgets: this.widgets
     });
-    console.log(this.value, '33333337')
-    // 初始化已有数据
-    if (this.value) {
-      this.$vpd.replaceState(this.value);
-    }
-    this.$vpd.$on("save", () => {
-      this.$emit("save", this.$vpd.state);
+    // // 初始化已有数据
+    // if (this.value) {
+    //   this.$vpd.replaceState(this.value);
+    // }
+    this.$vpd.$on('save', () => {
+      this.$emit('save', this.$vpd.state);
     });
   },
-  mounted() {
+  mounted () {
     // 初始化选中元件（将页面作为初始选中元件）
-    this.$vpd.commit("initActive");
+    this.$vpd.commit('initActive');
   },
 
   methods: {
-    dozoom(val) {
-      this.$vpd.commit("zoom", val);
+    dozoom (val) {
+      this.$vpd.commit('zoom', val);
     }
   }
 };
