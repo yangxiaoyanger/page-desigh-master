@@ -14,6 +14,7 @@
 import widgets from '../widgets';
 // import axios from '../../src/plugins/axios/api.request';
 import axios from 'axios'
+import generate from 'nanoid/generate'
 
 export default {
   data () {
@@ -52,7 +53,27 @@ export default {
   methods: {
     handleSave (data) {
       console.log('saving:', data);
-      window.localStorage.setItem('vpd-data', JSON.stringify(data));
+      let uuid = generate('1234567890abcdef', 16);
+      let requestData = {
+        pageid: uuid,
+        pagename: data.page.title,
+        url: uuid,
+        widgets: JSON.stringify(data.widgets)
+      }
+      axios.post('http://localhost:3000/users/saveWidgets', requestData)
+        .then(function (response) {
+        // handle success
+          if (response.data) {
+            console.log(response, 8754333333333333333333)
+          }
+        })
+        .catch(function (error) {
+        // handle error
+          console.log(error);
+        })
+        .then(function () {
+        // always executed
+        });
     },
     handleUpload (files) {
       console.log('uploading:', files);
