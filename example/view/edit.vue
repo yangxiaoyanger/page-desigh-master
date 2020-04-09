@@ -63,6 +63,7 @@ export default {
       axios.post('http://localhost:3000/users/saveWidgets', requestData)
         .then(function (response) {
         // handle success
+        console.log(response, 1111)
           if (response.data) {
             console.log(response, 8754333333333333333333)
           }
