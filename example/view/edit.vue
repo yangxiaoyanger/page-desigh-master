@@ -34,11 +34,32 @@ export default {
     //   this.value = JSON.parse(data);
     //   console.log(this.value, 54444)
     // }
-    axios.get('http://localhost:3000/users/getWidgets')
+    // axios.get('http://localhost:3000/users/getWidgets', {
+    //   pageid: 'f1b38d6813418795'
+    // })
+    //   .then(function (response) {
+    //     // handle success
+    //     if (response.data) {
+    //       that.value = response.data;
+    //       // that.value = response.data[1];
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log(error);
+    //   })
+    //   .then(function () {
+    //     // always executed
+    //   });
+
+    axios.get('http://localhost:3000/users/getWidgets2', {
+      pageid: 'f1b38d6813418795'
+    })
       .then(function (response) {
         // handle success
         if (response.data) {
-          that.value = response.data;
+          that.value = JSON.parse(response.data[1].widgets);
+          // that.value = response.data[1];
         }
       })
       .catch(function (error) {
@@ -58,12 +79,12 @@ export default {
         pageid: uuid,
         pagename: data.page.title,
         url: uuid,
-        widgets: JSON.stringify(data.widgets)
+        widgets: JSON.stringify(data)
       }
       axios.post('http://localhost:3000/users/saveWidgets', requestData)
         .then(function (response) {
         // handle success
-        console.log(response, 1111)
+          console.log(response, 1111)
           if (response.data) {
             console.log(response, 8754333333333333333333)
           }

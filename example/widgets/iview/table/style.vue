@@ -21,7 +21,7 @@
       <vpd-icon name="target" />
 
       <div class="panel-value">
-        <codemirror v-model="activeElement.columns" :options="cmOptions"></codemirror>
+        <!-- <codemirror v-model="activeElement.columns" :options="cmOptions"></codemirror> -->
         <!-- <Input v-model="activeElement.columns" /> -->
       </div>
     </div>

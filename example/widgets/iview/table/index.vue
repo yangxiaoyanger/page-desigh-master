@@ -2,8 +2,9 @@
   <Table
     :class="[playState ? 'anm-' + val.animationName : '']"
     :stripe="val.stripe"
-    :columns="string2JSON(val.columns)"
-    :data="string2JSON(val.data)"
+    :data="val.data"
+    :columns="val.columns"
+    
     :border="val.border"
     :show-header="val.showHeader"
     :width="val.width"
@@ -67,21 +68,7 @@ export default {
     text: "表格",
     belong: "page",
     animationName: "",
-    columns: JSON.stringify([
-      {
-        title: "Name",
-        key: "name"
-      },
-      {
-        title: "Age",
-        key: "age"
-      },
-      {
-        title: "Address",
-        key: "address"
-      }
-    ]),
-    data: JSON.stringify([
+    data: [
       {
         name: "John Brown",
         age: 18,
@@ -106,16 +93,25 @@ export default {
         address: "Ottawa No. 2 Lake Park",
         date: "2016-10-04"
       }
-    ])
+    ],
+    columns: [
+      {
+        title: "Name",
+        key: "name"
+      },
+      {
+        title: "Age",
+        key: "age"
+      },
+      {
+        title: "Address",
+        key: "address"
+      }
+    ]    
   },
   props: ["h", "val", "playState", "w"],
 
   methods: {
-    string2JSON: function(params) {
-      if (params) {
-        return JSON.parse(params);
-      }
-    }
   }
 };
 </script>
