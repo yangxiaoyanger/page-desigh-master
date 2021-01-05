@@ -26,7 +26,7 @@
   "dependencies": {
     "@jiaminghi/data-view": "^2.7.3",
     "autoprefixer-loader": "^3.2.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "echarts": "^4.6.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "gulp": "^4.0.2",
